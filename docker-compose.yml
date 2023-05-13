@@ -1,0 +1,33 @@
+
+version: '3'
+services:
+  frontend:
+    image: victorchao996/markdown_resume_maker:frontend
+    container_name: markdown_resume_maker_frontend
+    restart: always
+    ports:
+      - "3002:3002"
+    networks:
+      - resume_maker
+  backend:
+    image: victorchao996/markdown_resume_maker:backend
+    env_file:
+      - backend/.env
+    container_name: markdown_resume_maker_backend
+    restart: always
+    ports:
+      - "3003:3003"
+    networks:
+      - resume_maker
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - resume_maker
+networks:
+  resume_maker:
+    driver: bridge
