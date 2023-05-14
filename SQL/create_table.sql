@@ -1,9 +1,9 @@
 
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
-    username VARCHAR(16) NOT NULL,
+    name VARCHAR(16) NOT NULL,
     email VARCHAR(32) NOT NULL,
-    password_hash VARCHAR(32) NOT NULL,
+    password_hash VARCHAR(60) NOT NULL,
     PRIMARY KEY (id)
 ); 
 
@@ -23,8 +23,11 @@ CREATE TABLE resumes(
 
 -- *insert user value to table
 --@block
-INSERT INTO users (id, username, email, password_hash)
+INSERT INTO users (id, name, email, password_hash)
 VALUES (1, 'johnDoe', 'john@example.com', 'hashedPassword123');
+--@block
+INSERT INTO users (id, name, email, password_hash)
+VALUES (2, 'vicvic', '123@gmail.com', 'vicvic');
 
 -- *insert resume value to table
 --@block
