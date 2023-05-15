@@ -25,9 +25,29 @@ const checkEmailAndPasswordMatch = async (email, password) => {
     return true
 }
 
-const checkResumeDataFormat = async (resumeData) => {
+const checkCreateResumeDataFormat = async (resumeData) => {
     const { title, content, created_at, updated_at, visibility } = resumeData
-    if (!title || !content || !created_at || !updated_at || !visibility) {
+    if (
+        title == undefined ||
+        content == undefined ||
+        updated_at == undefined ||
+        created_at == undefined ||
+        typeof visibility !== "boolean"
+    ) {
+        return false
+    }
+    return true
+}
+const checkUpdateResumeDataFormat = async (resumeData) => {
+    // console.log(resumeData)
+    const { title, content, updated_at, visibility } = resumeData
+    console.log(title, content, updated_at, visibility)
+    if (
+        title == undefined ||
+        content == undefined ||
+        updated_at == undefined ||
+        typeof visibility !== "boolean"
+    ) {
         return false
     }
     return true
@@ -36,5 +56,6 @@ const checkResumeDataFormat = async (resumeData) => {
 module.exports = {
     checkUserEmailExist,
     checkEmailAndPasswordMatch,
-    checkResumeDataFormat
+    checkCreateResumeDataFormat,
+    checkUpdateResumeDataFormat
 }

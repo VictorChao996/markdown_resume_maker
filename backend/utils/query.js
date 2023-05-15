@@ -127,6 +127,24 @@ const createResume = async (user_id, resumeData) => {
     })
 }
 
+const updateResume = async (resume_id, resumeData) => {
+    const { title, content, updated_at, visibility } = resumeData
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `UPDATE resumes SET title = ?, content = ?, updated_at = ?, visibility = ? WHERE id = ?`,
+            [title, content, updated_at, visibility, resume_id],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(null)
+                }
+                console.log(results)
+                resolve(results.insertId)
+            }
+        )
+    })
+}
+
 module.exports = {
     showTables,
     getUserByEmail,
@@ -134,5 +152,6 @@ module.exports = {
     getResumeIdListByUserId,
     getResumeById,
     insertUser,
-    createResume
+    createResume,
+    updateResume
 }

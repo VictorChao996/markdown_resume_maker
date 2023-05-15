@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
 
     const { resumeData } = req.body
 
-    if (!resumeData || !Validator.checkResumeDataFormat) {
+    if (!resumeData || !Validator.checkCreateResumeDataFormat) {
         res.status(400).send("Invalid resume data")
         return
     }
