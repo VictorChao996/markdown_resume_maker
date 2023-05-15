@@ -34,3 +34,34 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6I
 {
 
 }
+
+###
+# Resume Create API
+POST http://localhost:3003/api/resume/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+    "resumeData":{
+        "title": "test from rest client",
+        "content": "content test from rest client",
+        "created_at": 1684121586601,
+        "updated_at": 1684121586601,
+        "visibility": true
+    }
+}
+
+###
+# Update Resume API
+PUT http://localhost:3003/api/resume/update?resumeId=8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+    "resumeData":{
+        "title": "update resume test from rest client",
+        "content": "content update test from rest client",
+        "updated_at": 1684121586601,
+        "visibility": true
+    }
+}
