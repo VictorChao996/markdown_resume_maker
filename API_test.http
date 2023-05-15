@@ -23,3 +23,14 @@ Content-Type: application/json
     "email": "12345@gmail.com",
     "password": "12345"
 }
+
+###
+# Resume Get API
+
+GET http://localhost:3003/api/resume/get?resumeId=5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+
+}

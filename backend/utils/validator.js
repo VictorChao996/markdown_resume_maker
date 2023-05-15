@@ -25,7 +25,16 @@ const checkEmailAndPasswordMatch = async (email, password) => {
     return true
 }
 
+const checkResumeDataFormat = async (resumeData) => {
+    const { title, content, created_at, updated_at, visibility } = resumeData
+    if (!title || !content || !created_at || !updated_at || !visibility) {
+        return false
+    }
+    return true
+}
+
 module.exports = {
     checkUserEmailExist,
-    checkEmailAndPasswordMatch
+    checkEmailAndPasswordMatch,
+    checkResumeDataFormat
 }

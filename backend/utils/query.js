@@ -60,6 +60,38 @@ const getHashedPasswordByEmail = async (email) => {
     })
 }
 
+const getResumeIdListByUserId = async (user_id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT id FROM resumes WHERE user_id = ?`,
+            [user_id],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(null)
+                }
+                resolve(results.map((res) => res.id))
+            }
+        )
+    })
+}
+
+const getResumeById = async (resume_id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT * FROM resumes WHERE id = ?`,
+            [resume_id],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(null)
+                }
+                resolve(results[0])
+            }
+        )
+    })
+}
+
 const insertUser = async (name, email, password_hash) => {
     return new Promise((resolve, reject) => {
         pool.query(
@@ -76,9 +108,31 @@ const insertUser = async (name, email, password_hash) => {
     })
 }
 
+const createResume = async (user_id, resumeData) => {
+    console.log(resumeData)
+    const { title, content, created_at, updated_at, visibility } = resumeData
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `INSERT INTO resumes (user_id, title, content, created_at, updated_at, visibility) VALUES (?, ?, ?, ?, ?, ?)`,
+            [user_id, title, content, created_at, updated_at, visibility],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(null)
+                }
+                // console.log(results)
+                resolve(results.insertId)
+            }
+        )
+    })
+}
+
 module.exports = {
     showTables,
     getUserByEmail,
     getHashedPasswordByEmail,
-    insertUser
+    getResumeIdListByUserId,
+    getResumeById,
+    insertUser,
+    createResume
 }
