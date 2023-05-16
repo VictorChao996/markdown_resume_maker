@@ -53,7 +53,8 @@ const Body = () => {
             <div
                 className="site-layout-content"
                 style={{
-                    background: colorBgContainer
+                    background: colorBgContainer,
+                    height: "1000px"
                 }}
             >
                 Content
