@@ -14,7 +14,8 @@ const SignInModal = ({
     setIsModalOpen,
     loginStatus,
     setLoginStatus,
-    openSignUpModal
+    openSignUpModal,
+    setAccessToken
 }) => {
     const [isLoading, setIsLoading] = useState(false)
     // const [loginStatus, setLoginStatus] = useState(0)
@@ -47,6 +48,8 @@ const SignInModal = ({
                 setIsLoading(false)
                 setLoginStatus(2)
                 setLoginMessage("Successful Sign In")
+                setAccessToken(response.data.data.access_token)
+                // console.log(response.data.data.access_token)
                 // setIsModalOpen(false);
             }
         } catch (e) {

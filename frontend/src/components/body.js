@@ -10,47 +10,74 @@ import {
     DownloadOutlined,
     FileMarkdownOutlined
 } from "@ant-design/icons"
+import MarkdownPage from "./markdownPage"
 const { Header, Content, Footer } = Layout
 const { Item } = Form
+const { Step } = Steps
 
 const Body = () => {
+    const [currentStep, setCurrentStep] = useState(0)
     const {
         token: { colorBgContainer }
     } = theme.useToken()
+
+    const handleStepClick = (stepIndex) => {
+        console.log("Step clicked:", stepIndex)
+        setCurrentStep(stepIndex)
+    }
+
     return (
         <div>
             <Steps
-                current={0}
+                current={currentStep}
                 style={{
                     position: "sticky",
                     top: 0,
                     padding: "20px 20px",
-                    width: "100%"
+                    width: "100%",
+                    backgroundColor: "white",
+                    borderBottom: "1px solid #e8e8e8"
                 }}
                 items={[
                     {
                         title: "Fill in(Pick the content)",
                         // status: "finish",
-                        icon: <FormOutlined />
+                        icon: <FormOutlined />,
+                        onClick: () => handleStepClick(0),
+                        style: {
+                            cursor: "pointer"
+                        }
                     },
                     {
                         title: "Write",
                         // status: "finish",
-                        icon: <FileMarkdownOutlined />
+                        icon: <FileMarkdownOutlined />,
+                        onClick: () => handleStepClick(1),
+                        style: {
+                            cursor: "pointer"
+                        }
                     },
                     {
                         title: "Adjust",
                         // status: "process",
-                        icon: <ControlOutlined />
+                        icon: <ControlOutlined />,
+                        onClick: () => handleStepClick(2),
+                        style: {
+                            cursor: "pointer"
+                        }
                     },
                     {
                         title: "Download",
                         // status: "wait",
-                        icon: <DownloadOutlined />
+                        icon: <DownloadOutlined />,
+                        onClick: () => handleStepClick(3),
+                        style: {
+                            cursor: "pointer"
+                        }
                     }
                 ]}
-            />
-            <div
+            ></Steps>
+            {/* <div
                 className="site-layout-content"
                 style={{
                     background: colorBgContainer,
@@ -58,7 +85,8 @@ const Body = () => {
                 }}
             >
                 Content
-            </div>
+            </div> */}
+            <MarkdownPage />
         </div>
     )
 }

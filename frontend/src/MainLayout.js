@@ -10,7 +10,7 @@ const MainLayout = () => {
     const [isSignInModalOpen, setIsSignInModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
     // const [isLoading, setIsLoading] = useState(false)
-    const [access_token, setAccess_token] = useState(null)
+    const [accessToken, setAccessToken] = useState(null)
     const [loginStatus, setLoginStatus] = useState(0)
     // const [loginMessage, setLoginMessage] = useState("You are not login yet")
 
@@ -71,7 +71,8 @@ const MainLayout = () => {
             </Content>
             <Footer
                 style={{
-                    textAlign: "center"
+                    textAlign: "center",
+                    border: "1px solid #e8e8e8"
                 }}
             >
                 Ant Design ©2023 Created by Ant UED
@@ -82,6 +83,7 @@ const MainLayout = () => {
                 loginStatus={loginStatus}
                 setLoginStatus={setLoginStatus}
                 openSignUpModal={open_signup_modal}
+                setAccessToken={setAccessToken}
             />
             <SignUpModal
                 isModalOpen={isSignUpModalOpen}
