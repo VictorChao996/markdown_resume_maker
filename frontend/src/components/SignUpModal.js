@@ -4,8 +4,8 @@ import { Alert, Form, Modal, Button, Input } from "antd"
 import { MailOutlined, UserOutlined } from "@ant-design/icons"
 import API from "../utils/API"
 
-// const singUpUrl = API.signUpAPI
-const signUpUrl = "http://localhost:3003/api/user/signup"
+const signUpUrl = API.signUpAPI
+// const signUpUrl = "http://localhost:3003/api/user/signup"
 const { Item } = Form
 
 const SignUpModal = ({ isModalOpen, setIsModalOpen }) => {

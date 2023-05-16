@@ -2,7 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import { Form, Layout, Menu } from "antd"
 import Body from "./components/body.js"
-import SignInModal from "./components/SingInModal.js"
+import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
 const { Header, Content, Footer } = Layout
 

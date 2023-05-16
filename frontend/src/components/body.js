@@ -29,7 +29,7 @@ const Body = () => {
                 }}
                 items={[
                     {
-                        title: "Fill in",
+                        title: "Fill in(Pick the content)",
                         // status: "finish",
                         icon: <FormOutlined />
                     },
