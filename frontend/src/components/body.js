@@ -13,6 +13,7 @@ import {
 import MarkdownPage from "./markdownPage"
 import PdfPage from "./pdfPage"
 import TextEditor from "./textEditor"
+import ResumeListPage from "./resumeListPage"
 const { Header, Content, Footer } = Layout
 const { Item } = Form
 const { Step } = Steps
@@ -92,6 +93,7 @@ const Body = () => {
             </div> */}
             <MarkdownPage setResumeHTML={setResumeHTML} />
             <PdfPage resumeHTML={resumeHTML} />
+            <ResumeListPage />
             {/* <CodeEditor /> */}
         </div>
     )

@@ -9,14 +9,15 @@ const { Header, Content, Footer } = Layout
 const MainLayout = () => {
     const [isSignInModalOpen, setIsSignInModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
-    // const [isLoading, setIsLoading] = useState(false)
-    const [accessToken, setAccessToken] = useState(null)
     const [loginStatus, setLoginStatus] = useState(0)
-    // const [loginMessage, setLoginMessage] = useState("You are not login yet")
 
     const login_logout_button = () => {
         if (loginStatus !== 2) {
             setIsSignInModalOpen(true)
+            return
+        } else if (loginStatus === 2) {
+            localStorage.removeItem("accessToken")
+            setLoginStatus(0)
             return
         }
         setLoginStatus(0)
@@ -51,7 +52,7 @@ const MainLayout = () => {
                 <Menu
                     theme="dark"
                     mode="horizontal"
-                    defaultSelectedKeys={["1"]}
+                    // defaultSelectedKeys={["1"]}
                     style={{
                         justifyContent: "flex-end"
                     }}
@@ -62,7 +63,10 @@ const MainLayout = () => {
                         key="3"
                         onClick={login_logout_button}
                     >
-                        {loginStatus === 0 ? "Login" : "Logout"}
+                        {/* {loginStatus === 0 ? "Login" : "Logout"} */}
+                        {localStorage.getItem("accessToken") === null
+                            ? "Login"
+                            : "Logout"}
                     </Menu.Item>
                 </Menu>
             </Header>
@@ -83,7 +87,6 @@ const MainLayout = () => {
                 loginStatus={loginStatus}
                 setLoginStatus={setLoginStatus}
                 openSignUpModal={open_signup_modal}
-                setAccessToken={setAccessToken}
             />
             <SignUpModal
                 isModalOpen={isSignUpModalOpen}
