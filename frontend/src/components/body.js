@@ -11,12 +11,15 @@ import {
     FileMarkdownOutlined
 } from "@ant-design/icons"
 import MarkdownPage from "./markdownPage"
+import PdfPage from "./pdfPage"
+import TextEditor from "./textEditor"
 const { Header, Content, Footer } = Layout
 const { Item } = Form
 const { Step } = Steps
 
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
+    const [resumeHTML, setResumeHTML] = useState("")
     const {
         token: { colorBgContainer }
     } = theme.useToken()
@@ -36,7 +39,8 @@ const Body = () => {
                     padding: "20px 20px",
                     width: "100%",
                     backgroundColor: "white",
-                    borderBottom: "1px solid #e8e8e8"
+                    borderBottom: "1px solid #e8e8e8",
+                    zIndex: 1
                 }}
                 items={[
                     {
@@ -86,7 +90,9 @@ const Body = () => {
             >
                 Content
             </div> */}
-            <MarkdownPage />
+            <MarkdownPage setResumeHTML={setResumeHTML} />
+            <PdfPage resumeHTML={resumeHTML} />
+            {/* <CodeEditor /> */}
         </div>
     )
 }

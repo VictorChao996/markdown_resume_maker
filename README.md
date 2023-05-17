@@ -1,5 +1,8 @@
 ## npm package used
-- pdfkit
+<!-- - react-pdf -->
+- pdfMake
+- htmlToPdfMake
 - antd
 - showdown
 - express
+- @uiw/react-codemirror

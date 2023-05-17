@@ -69,14 +69,14 @@ const MainLayout = () => {
             <Content>
                 <Body />
             </Content>
-            <Footer
+            {/* <Footer
                 style={{
                     textAlign: "center",
                     border: "1px solid #e8e8e8"
                 }}
             >
                 Ant Design ©2023 Created by Ant UED
-            </Footer>
+            </Footer> */}
             <SignInModal
                 isModalOpen={isSignInModalOpen}
                 setIsModalOpen={setIsSignInModalOpen}
