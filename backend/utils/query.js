@@ -76,6 +76,28 @@ const getResumeIdListByUserId = async (user_id) => {
     })
 }
 
+/**
+ * * Get resume title & resume_id list by user id
+ * @param {*} user_id
+ * @returns
+ */
+const getResumeListInfoByUserId = async (user_id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `SELECT title, id FROM resumes WHERE user_id = ?`,
+            [user_id],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject([])
+                }
+                console.log(results)
+                resolve(results)
+            }
+        )
+    })
+}
+
 const getResumeById = async (resume_id) => {
     return new Promise((resolve, reject) => {
         pool.query(
@@ -150,6 +172,7 @@ module.exports = {
     getUserByEmail,
     getHashedPasswordByEmail,
     getResumeIdListByUserId,
+    getResumeListInfoByUserId,
     getResumeById,
     insertUser,
     createResume,
