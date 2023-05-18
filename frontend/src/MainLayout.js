@@ -1,15 +1,77 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
-import { Form, Layout, Menu } from "antd"
+import { Form, Layout, Menu, Steps } from "antd"
 import Body from "./components/body.js"
 import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
-const { Header, Content, Footer } = Layout
+import {
+    LoadingOutlined,
+    SmileOutlined,
+    SolutionOutlined,
+    UserOutlined,
+    FormOutlined,
+    SaveOutlined,
+    ControlOutlined,
+    DownloadOutlined,
+    FileMarkdownOutlined,
+    UnorderedListOutlined
+} from "@ant-design/icons"
+import NewResumeModal from "./components/newResumeModal.js"
+import ResumeListModal from "./components/resumeListModal.js"
+import ResumeListPage from "./pages/resumeListPage.js"
+import API from "./utils/API.js"
+const { Header, Content, Footer, Sider } = Layout
+
+function getItem(label, key, icon, children, onClick) {
+    return { key, icon, children, label, onClick }
+}
 
 const MainLayout = () => {
     const [isSignInModalOpen, setIsSignInModalOpen] = useState(false)
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
+    const [isNewResumeModalOpen, setIsNewResumeModalOpen] = useState(false)
+    const [isResumeListModalOpen, setIsResumeListModalOpen] = useState(false)
     const [loginStatus, setLoginStatus] = useState(0)
+    const [collapsed, setCollapsed] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem("accessToken") !== null) {
+            setLoginStatus(2)
+        }
+        // console.log(localStorage.getItem("accessToken"))
+        if (loginStatus !== 2) {
+            localStorage.removeItem("markdownContent")
+            localStorage.removeItem("resumeId")
+            localStorage.removeItem("resumeTitle")
+            localStorage.removeItem("resumeTitleList")
+        }
+    })
+
+    const items = [
+        getItem("New resume", "1", <FormOutlined />, null, () => {
+            if (loginStatus !== 2) {
+                setIsSignInModalOpen(true)
+                return
+            }
+            setIsNewResumeModalOpen(true)
+        }),
+        getItem("resume list", "2", <UnorderedListOutlined />, null, () => {
+            setIsResumeListModalOpen(true)
+        }),
+        getItem("save", "3", <SaveOutlined />, null, async () => {
+            console.log("save")
+            await saveResumeContentToDB()
+        }),
+        getItem(
+            loginStatus === 2 ? "logout" : "login",
+            "4",
+            <UserOutlined />,
+            null,
+            () => {
+                login_logout_button()
+            }
+        )
+    ]
 
     const login_logout_button = () => {
         if (loginStatus !== 2) {
@@ -17,6 +79,10 @@ const MainLayout = () => {
             return
         } else if (loginStatus === 2) {
             localStorage.removeItem("accessToken")
+            localStorage.removeItem("markdownContent")
+            localStorage.removeItem("resumeId")
+            localStorage.removeItem("resumeTitle")
+            localStorage.removeItem("resumeTitleList")
             setLoginStatus(0)
             return
         }
@@ -27,71 +93,80 @@ const MainLayout = () => {
         setIsSignUpModalOpen(true)
     }
 
+    const saveResumeContentToDB = async () => {
+        const resumeId = localStorage.getItem("resumeId")
+        const resumeTitle = localStorage.getItem("resumeTitle")
+        const resumeContent = localStorage.getItem("markdownContent")
+        try {
+            const response = await axios.put(
+                `${API.resumeUpdateAPI}?resumeId=${resumeId}`,
+                {
+                    "resumeData": {
+                        "title": `${resumeTitle}`,
+                        "content": `${resumeContent}`,
+                        "updated_at": Date.now(),
+                        "visibility": true
+                    }
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "accessToken"
+                        )}`
+                    }
+                }
+            )
+            console.log(response)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
-        <Layout className="layout">
-            <Header
-                style={{
-                    height: "100%"
-                }}
-                // style={{
-                //     position: "sticky",
-                //     top: 0,
-                //     zIndex: 1,
-                //     width: "100%"
-                // }}
+        <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
+            <Sider
+                collapsible
+                collapsed={collapsed}
+                onCollapse={(value) => setCollapsed(value)}
+                // style={{ position: "fixed", height: "100vh" }}
             >
-                <div
-                    style={{
-                        float: "left",
-                        width: 120,
-                        height: 31,
-                        margin: "16px 24px 16px 0",
-                        background: "rgba(255, 255, 255, 0.2)"
-                    }}
-                />
                 <Menu
                     theme="dark"
-                    mode="horizontal"
-                    // defaultSelectedKeys={["1"]}
-                    style={{
-                        justifyContent: "flex-end"
-                    }}
-                >
-                    <Menu.Item key="1">New File</Menu.Item>
-                    <Menu.Item key="2">About</Menu.Item>
-                    <Menu.Item
-                        key="3"
-                        onClick={login_logout_button}
-                    >
-                        {/* {loginStatus === 0 ? "Login" : "Logout"} */}
-                        {localStorage.getItem("accessToken") === null
-                            ? "Login"
-                            : "Logout"}
-                    </Menu.Item>
-                </Menu>
-            </Header>
-            <Content>
-                <Body />
-            </Content>
-            {/* <Footer
-                style={{
-                    textAlign: "center",
-                    border: "1px solid #e8e8e8"
-                }}
+                    selectable={false}
+                    mode="inline"
+                    items={items}
+                />
+            </Sider>
+            <Layout
+                className="layout"
+                style={{ marginLeft: "auto" }}
             >
-                Ant Design ©2023 Created by Ant UED
-            </Footer> */}
-            <SignInModal
-                isModalOpen={isSignInModalOpen}
-                setIsModalOpen={setIsSignInModalOpen}
-                loginStatus={loginStatus}
-                setLoginStatus={setLoginStatus}
-                openSignUpModal={open_signup_modal}
-            />
-            <SignUpModal
-                isModalOpen={isSignUpModalOpen}
-                setIsModalOpen={setIsSignUpModalOpen}
-            />
+                <Content style={{ height: "100%" }}>
+                    <Body />
+                    {/* <ResumeListPage /> */}
+                </Content>
+
+                <SignInModal
+                    isModalOpen={isSignInModalOpen}
+                    setIsModalOpen={setIsSignInModalOpen}
+                    loginStatus={loginStatus}
+                    setLoginStatus={setLoginStatus}
+                    openSignUpModal={open_signup_modal}
+                />
+                <SignUpModal
+                    isModalOpen={isSignUpModalOpen}
+                    setIsModalOpen={setIsSignUpModalOpen}
+                />
+                <NewResumeModal
+                    isModalOpen={isNewResumeModalOpen}
+                    setIsModalOpen={setIsNewResumeModalOpen}
+                    loginStatus={loginStatus}
+                />
+                <ResumeListModal
+                    isModalOpen={isResumeListModalOpen}
+                    setIsModalOpen={setIsResumeListModalOpen}
+                />
+            </Layout>
         </Layout>
     )
 }

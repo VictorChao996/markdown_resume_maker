@@ -10,13 +10,13 @@ import {
     DownloadOutlined,
     FileMarkdownOutlined
 } from "@ant-design/icons"
-import MarkdownPage from "./markdownPage"
+import MarkdownPage from "../pages/markdownPage"
 import PdfPage from "./pdfPage"
 import TextEditor from "./textEditor"
-import ResumeListPage from "./resumeListPage"
+import ResumeListPage from "../pages/resumeListPage"
+import "./body.scss"
 const { Header, Content, Footer } = Layout
 const { Item } = Form
-const { Step } = Steps
 
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
@@ -31,8 +31,10 @@ const Body = () => {
     }
 
     return (
-        <div>
+        <div className="body">
             <Steps
+                size="small"
+                type="navigation"
                 current={currentStep}
                 style={{
                     position: "sticky",
@@ -44,15 +46,16 @@ const Body = () => {
                     zIndex: 1
                 }}
                 items={[
-                    {
-                        title: "Fill in(Pick the content)",
-                        // status: "finish",
-                        icon: <FormOutlined />,
-                        onClick: () => handleStepClick(0),
-                        style: {
-                            cursor: "pointer"
-                        }
-                    },
+                    // {
+                    //     // title: "Fill in",
+                    //     title: "pick",
+                    //     // status: "finish",
+                    //     icon: <FormOutlined />,
+                    //     onClick: () => handleStepClick(0),
+                    //     style: {
+                    //         cursor: "pointer"
+                    //     }
+                    // },
                     {
                         title: "Write",
                         // status: "finish",
@@ -81,7 +84,7 @@ const Body = () => {
                         }
                     }
                 ]}
-            ></Steps>
+            />
             {/* <div
                 className="site-layout-content"
                 style={{
@@ -91,9 +94,11 @@ const Body = () => {
             >
                 Content
             </div> */}
+            {/* <ResumeListPage /> */}
             <MarkdownPage setResumeHTML={setResumeHTML} />
-            <PdfPage resumeHTML={resumeHTML} />
-            <ResumeListPage />
+
+            {/* <PdfPage resumeHTML={resumeHTML} />
+            <ResumeListPage /> */}
             {/* <CodeEditor /> */}
         </div>
     )
