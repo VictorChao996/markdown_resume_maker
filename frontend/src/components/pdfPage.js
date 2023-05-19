@@ -23,7 +23,7 @@ const PdfPage = ({ resumeHTML }) => {
             //         style: "htmlContent"
             //     }
             // ]
-            // styles: {
+            // styles: {`
             //     header: {
             //         fontSize: 16,
             //         bold: true,

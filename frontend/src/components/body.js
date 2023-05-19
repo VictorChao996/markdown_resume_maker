@@ -30,6 +30,17 @@ const Body = () => {
         setCurrentStep(stepIndex)
     }
 
+    const renderComponent = () => {
+        switch (currentStep) {
+            case 1:
+                return <MarkdownPage setResumeHTML={setResumeHTML} />
+            case 3:
+                return <PdfPage resumeHTML={resumeHTML} />
+            default:
+                return null
+        }
+    }
+
     return (
         <div className="body">
             <Steps
@@ -46,16 +57,16 @@ const Body = () => {
                     zIndex: 1
                 }}
                 items={[
-                    // {
-                    //     // title: "Fill in",
-                    //     title: "pick",
-                    //     // status: "finish",
-                    //     icon: <FormOutlined />,
-                    //     onClick: () => handleStepClick(0),
-                    //     style: {
-                    //         cursor: "pointer"
-                    //     }
-                    // },
+                    {
+                        // title: "Fill in",
+                        title: "pick",
+                        // status: "finish",
+                        icon: <FormOutlined />,
+                        onClick: () => handleStepClick(0),
+                        style: {
+                            cursor: "pointer"
+                        }
+                    },
                     {
                         title: "Write",
                         // status: "finish",
@@ -95,7 +106,8 @@ const Body = () => {
                 Content
             </div> */}
             {/* <ResumeListPage /> */}
-            <MarkdownPage setResumeHTML={setResumeHTML} />
+            {renderComponent()}
+            {/* <MarkdownPage setResumeHTML={setResumeHTML} /> */}
 
             {/* <PdfPage resumeHTML={resumeHTML} />
             <ResumeListPage /> */}

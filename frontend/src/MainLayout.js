@@ -123,7 +123,7 @@ const MainLayout = () => {
     }
 
     return (
-        <Layout style={{ minHeight: "100vh", overflow: "hidden" }}>
+        <Layout style={{ minHeight: "100vh" }}>
             <Sider
                 collapsible
                 collapsed={collapsed}

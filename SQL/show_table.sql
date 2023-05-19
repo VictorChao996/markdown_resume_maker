@@ -15,3 +15,5 @@ SELECT title,id FROM resumes WHERE user_id = 3;
 
 --@block
 DELETE FROM resumes WHERE id > 16;
+--@block
+DELETE FROM resumes WHERE id > 15 AND user_id = 5;
