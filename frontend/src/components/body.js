@@ -1,22 +1,16 @@
 import { useState } from "react"
 import { Form, Modal, Steps, Layout, Menu, theme, Button, Input } from "antd"
 import {
-    LoadingOutlined,
-    SmileOutlined,
-    SolutionOutlined,
-    UserOutlined,
     FormOutlined,
     ControlOutlined,
     DownloadOutlined,
     FileMarkdownOutlined
 } from "@ant-design/icons"
 import MarkdownPage from "../pages/markdownPage"
-import PdfPage from "./pdfPage"
-import TextEditor from "./textEditor"
-import ResumeListPage from "../pages/resumeListPage"
+import PdfPage from "../pages/pdfPage"
+import TemplatePage from "../pages/TemplatePage"
+import AdjustPage from "../pages/AdjustPage"
 import "./body.scss"
-const { Header, Content, Footer } = Layout
-const { Item } = Form
 
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
@@ -32,8 +26,12 @@ const Body = () => {
 
     const renderComponent = () => {
         switch (currentStep) {
-            case 1:
+            case 0:
                 return <MarkdownPage setResumeHTML={setResumeHTML} />
+            case 1:
+                return <TemplatePage />
+            case 2:
+                return <AdjustPage />
             case 3:
                 return <PdfPage resumeHTML={resumeHTML} />
             default:
@@ -54,23 +52,24 @@ const Body = () => {
                     width: "100%",
                     backgroundColor: "white",
                     borderBottom: "1px solid #e8e8e8",
-                    zIndex: 1
+                    zIndex: 1,
+                    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)"
                 }}
                 items={[
                     {
-                        // title: "Fill in",
-                        title: "pick",
+                        title: "Write",
                         // status: "finish",
-                        icon: <FormOutlined />,
+                        icon: <FileMarkdownOutlined />,
                         onClick: () => handleStepClick(0),
                         style: {
                             cursor: "pointer"
                         }
                     },
                     {
-                        title: "Write",
+                        // title: "Fill in",
+                        title: "pick",
                         // status: "finish",
-                        icon: <FileMarkdownOutlined />,
+                        icon: <FormOutlined />,
                         onClick: () => handleStepClick(1),
                         style: {
                             cursor: "pointer"
@@ -105,13 +104,7 @@ const Body = () => {
             >
                 Content
             </div> */}
-            {/* <ResumeListPage /> */}
             {renderComponent()}
-            {/* <MarkdownPage setResumeHTML={setResumeHTML} /> */}
-
-            {/* <PdfPage resumeHTML={resumeHTML} />
-            <ResumeListPage /> */}
-            {/* <CodeEditor /> */}
         </div>
     )
 }

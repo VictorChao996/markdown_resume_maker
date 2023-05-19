@@ -25,12 +25,19 @@ const SignInModal = ({
     const handleOk = () => {
         if (loginStatus === 2) {
             setIsModalOpen(false)
+            resetForm()
         }
     }
 
     const handleCancel = () => {
         setIsLoading(false)
         setIsModalOpen(false)
+        resetForm()
+    }
+
+    const resetForm = () => {
+        const form = document.getElementById("loginForm")
+        form.reset() // Reset the form fields
     }
 
     const handleSignIn = async (values) => {

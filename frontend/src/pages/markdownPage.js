@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react"
 import showdown from "showdown"
 import "./MarkdownPage.scss"
 import TextEditor from "../components/textEditor"
-import API from "../utils/API"
-import axios from "axios"
-
+import { Input, Button } from "antd"
+import { SaveOutlined } from "@ant-design/icons"
 const MarkdownPage = ({ setResumeHTML }) => {
     const [markdown, setMarkdown] = useState("")
     const [html, setHtml] = useState("")
@@ -17,32 +16,28 @@ const MarkdownPage = ({ setResumeHTML }) => {
         setResumeHTML(convertedHtml)
     }, [markdown])
 
-    // const getResumeContent = async () => {
-    //     const response = await axios.get(
-    //         `${API.resumeGetAPI}?resumeId=${resumeId}`,
-    //         {
-    //             headers: {
-    //                 Authorization: `Bearer ${localStorage.getItem(
-    //                     "accessToken"
-    //                 )}`
-    //             }
-    //         }
-    //     )
-    // }
-
     return (
-        <div className="markdownPage">
-            <div className="code-editor-container">
-                <TextEditor
-                    markdownContent={markdown}
-                    setMarkdown={setMarkdown}
+        <>
+            {/* <div className="editorBar">
+                <Input
+                    placeholder="Title"
+                    className="input"
+                />
+                <Button icon={<SaveOutlined />}></Button>
+            </div> */}
+            <div className="markdownPage">
+                <div className="code-editor-container">
+                    <TextEditor
+                        markdownContent={markdown}
+                        setMarkdown={setMarkdown}
+                    />
+                </div>
+                <div
+                    dangerouslySetInnerHTML={{ __html: html }}
+                    className="previewArea"
                 />
             </div>
-            <div
-                dangerouslySetInnerHTML={{ __html: html }}
-                className="previewArea"
-            />
-        </div>
+        </>
     )
 }
 

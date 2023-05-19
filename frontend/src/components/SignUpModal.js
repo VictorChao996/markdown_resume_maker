@@ -49,7 +49,7 @@ const SignUpModal = ({ isModalOpen, setIsModalOpen }) => {
             }
         } catch (e) {
             console.log(e)
-            setSignUpMessage("Email or password is incorrect")
+            setSignUpMessage("Email already exists")
             setSignUpStatus(1)
         }
 

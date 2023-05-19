@@ -44,7 +44,8 @@ const NewResumeModal = ({ isModalOpen, setIsModalOpen }) => {
                     }
                 }
             )
-            if (response.status === 200) {
+            console.log(response)
+            if (response.status === 201) {
                 setResumeCreateMessage("Resume created successfully")
                 setResumeCreateStatus(2)
                 localStorage.setItem(
@@ -98,7 +99,7 @@ const NewResumeModal = ({ isModalOpen, setIsModalOpen }) => {
                     form="createResumeForm"
                     onClick={handleOk}
                 >
-                    Create
+                    {resumeCreateStatus === 2 ? "OK" : "Create"}
                 </Button>
             ]}
         >

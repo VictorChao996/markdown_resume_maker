@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Form, Layout, Menu, Steps } from "antd"
+import { Form, Layout, Menu, Steps, FloatButton } from "antd"
 import Body from "./components/body.js"
 import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
@@ -14,7 +14,8 @@ import {
     ControlOutlined,
     DownloadOutlined,
     FileMarkdownOutlined,
-    UnorderedListOutlined
+    UnorderedListOutlined,
+    UpOutlined
 } from "@ant-design/icons"
 import NewResumeModal from "./components/newResumeModal.js"
 import ResumeListModal from "./components/resumeListModal.js"
@@ -38,14 +39,11 @@ const MainLayout = () => {
         if (localStorage.getItem("accessToken") !== null) {
             setLoginStatus(2)
         }
-        // console.log(localStorage.getItem("accessToken"))
-        if (loginStatus !== 2) {
-            localStorage.removeItem("markdownContent")
-            localStorage.removeItem("resumeId")
-            localStorage.removeItem("resumeTitle")
-            localStorage.removeItem("resumeTitleList")
+
+        return () => {
+            localStorage.clear()
         }
-    })
+    }, [])
 
     const items = [
         getItem("New resume", "1", <FormOutlined />, null, () => {
@@ -94,6 +92,10 @@ const MainLayout = () => {
     }
 
     const saveResumeContentToDB = async () => {
+        if (loginStatus !== 2) {
+            setIsSignInModalOpen(true)
+            return
+        }
         const resumeId = localStorage.getItem("resumeId")
         const resumeTitle = localStorage.getItem("resumeTitle")
         const resumeContent = localStorage.getItem("markdownContent")
@@ -122,12 +124,25 @@ const MainLayout = () => {
         }
     }
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
     return (
         <Layout style={{ minHeight: "100vh" }}>
             <Sider
-                collapsible
+                // collapsible
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
+                style={{
+                    position: "fixed",
+                    height: "100vh",
+                    overflow: "auto",
+                    zIndex: 1
+                }}
                 // style={{ position: "fixed", height: "100vh" }}
             >
                 <Menu
@@ -139,11 +154,10 @@ const MainLayout = () => {
             </Sider>
             <Layout
                 className="layout"
-                style={{ marginLeft: "auto" }}
+                style={{ marginLeft: collapsed ? "80px" : "200px" }}
             >
                 <Content style={{ height: "100%" }}>
                     <Body />
-                    {/* <ResumeListPage /> */}
                 </Content>
 
                 <SignInModal
@@ -166,6 +180,11 @@ const MainLayout = () => {
                     isModalOpen={isResumeListModalOpen}
                     setIsModalOpen={setIsResumeListModalOpen}
                 />
+                {/* <FloatButton
+                    icon={<UpOutlined />}
+                    type="primary"
+                    onClick={scrollToTop}
+                /> */}
             </Layout>
         </Layout>
     )

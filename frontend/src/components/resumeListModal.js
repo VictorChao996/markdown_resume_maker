@@ -26,7 +26,9 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
     }
 
     const handleListRefresh = () => {
-        getResumeList()
+        if (localStorage.getItem("accessToken") !== null) {
+            getResumeList()
+        }
     }
 
     const getResumeList = async () => {
