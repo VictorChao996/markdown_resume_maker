@@ -5,21 +5,14 @@ import Body from "./components/body.js"
 import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
 import {
-    LoadingOutlined,
-    SmileOutlined,
-    SolutionOutlined,
     UserOutlined,
     FormOutlined,
     SaveOutlined,
-    ControlOutlined,
-    DownloadOutlined,
-    FileMarkdownOutlined,
-    UnorderedListOutlined,
-    UpOutlined
+    UnorderedListOutlined
 } from "@ant-design/icons"
 import NewResumeModal from "./components/newResumeModal.js"
 import ResumeListModal from "./components/resumeListModal.js"
-import ResumeListPage from "./pages/resumeListPage.js"
+import ResumeList from "./components/resumeList.js"
 import API from "./utils/API.js"
 const { Header, Content, Footer, Sider } = Layout
 
@@ -143,7 +136,6 @@ const MainLayout = () => {
                     overflow: "auto",
                     zIndex: 1
                 }}
-                // style={{ position: "fixed", height: "100vh" }}
             >
                 <Menu
                     theme="dark"

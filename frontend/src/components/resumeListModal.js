@@ -3,7 +3,7 @@ import axios from "axios"
 import { Alert, Form, Modal, Button, Input } from "antd"
 import { MailOutlined, UserOutlined } from "@ant-design/icons"
 import API from "../utils/API"
-import ResumeListPage from "../pages/resumeListPage"
+import ResumeList from "./resumeList"
 
 const signUpUrl = API.signUpAPI
 // const signUpUrl = "http://localhost:3003/api/user/signup"
@@ -84,7 +84,7 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
         >
             {localStorage.getItem("accessToken") !== null ? (
                 <>
-                    <ResumeListPage
+                    <ResumeList
                         resumeTitleList={resumeTitleList}
                         setResumeTitleList={setResumeTitleList}
                     />

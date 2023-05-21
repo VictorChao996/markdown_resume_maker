@@ -34,10 +34,14 @@
     }
 
     .previewArea{
-        margin-left: 20px;
+        // margin-left: 20px;
         flex-grow: 1;
         overflow-y: scroll;
         width: 50%;
         height: 200%;
+        background-color: rgb(245, 245, 245);
+        display: flex;
+        justify-content: center;
+
     }
 }

@@ -4,43 +4,6 @@ import { markdown, markdownLanguage } from "@codemirror/lang-markdown"
 import { sublime } from "@uiw/codemirror-theme-sublime"
 // import { languages } from "@codemirror/language-data"
 
-// const markdownContent = `## Title
-
-// ### Subtitle
-// - item 1
-// - item 2
-// - item 3
-// - item 4
-
-// ### Subtitle
-// 1. item 1
-// 2. item 2
-// 3. item 3
-// 4. item 4
-// ### Subtitle
-// - item 1
-// - item 2
-// - item 3
-// - item 4
-
-// ### Subtitle
-// 1. item 1
-// 2. item 2
-// 3. item 3
-// 4. item 4
-// ### Subtitle
-// - item 1
-// - item 2
-// - item 3
-// - item 4
-
-// ### Subtitle
-// 1. item 1
-// 2. item 2
-// 3. item 3
-// 4. item 4
-// `
-
 const TextEditor = ({ markdownContent, setMarkdown }) => {
     useEffect(() => {
         console.log(localStorage.getItem("markdownContent"))

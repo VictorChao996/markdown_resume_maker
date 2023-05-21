@@ -11,7 +11,7 @@ const data = [
     "Los Angeles battles huge wildfires."
 ]
 
-const ResumeListPage = ({ resumeTitleList, setResumeTitleList }) => {
+const ResumeList = ({ resumeTitleList, setResumeTitleList }) => {
     // const [resumeTitleList, setResumeTitleList] = useState([])
 
     useEffect(() => {
@@ -63,14 +63,6 @@ const ResumeListPage = ({ resumeTitleList, setResumeTitleList }) => {
 
     return (
         <div>
-            {/* <h1>Resume List Page</h1>
-            <button onClick={getResumeList}>Get Resume List</button>
-            <button onClick={handleCreateResume}>Create new resume</button>
-            <ul>
-                {resumeTitleList.map((resume) => {
-                    return <li>{resume.title}</li>
-                })}
-            </ul> */}
             <List
                 bordered
                 dataSource={resumeTitleList}
@@ -78,8 +70,6 @@ const ResumeListPage = ({ resumeTitleList, setResumeTitleList }) => {
                     <List.Item>
                         <a onClick={() => getResumeContent(item.id)}>
                             {item.title}
-                            {/* <h3>{item.title}</h3> */}
-                            {/* <p>{item.id}</p> */}
                         </a>
                     </List.Item>
                 )}
@@ -88,4 +78,4 @@ const ResumeListPage = ({ resumeTitleList, setResumeTitleList }) => {
     )
 }
 
-export default ResumeListPage
+export default ResumeList

@@ -7,10 +7,10 @@ import {
     FileMarkdownOutlined
 } from "@ant-design/icons"
 import MarkdownPage from "../pages/markdownPage"
-import PdfPage from "../pages/pdfPage"
 import TemplatePage from "../pages/TemplatePage"
 import AdjustPage from "../pages/AdjustPage"
 import "./body.scss"
+import DownloadPage from "../pages/DownloadPage"
 
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
@@ -27,13 +27,13 @@ const Body = () => {
     const renderComponent = () => {
         switch (currentStep) {
             case 0:
-                return <MarkdownPage setResumeHTML={setResumeHTML} />
-            case 1:
                 return <TemplatePage />
+            case 1:
+                return <MarkdownPage setResumeHTML={setResumeHTML} />
             case 2:
-                return <AdjustPage />
+                return <AdjustPage resumeHTML={resumeHTML} />
             case 3:
-                return <PdfPage resumeHTML={resumeHTML} />
+                return <DownloadPage resumeHTML={resumeHTML} />
             default:
                 return null
         }
@@ -57,19 +57,19 @@ const Body = () => {
                 }}
                 items={[
                     {
-                        title: "Write",
+                        // title: "Fill in",
+                        title: "pick",
                         // status: "finish",
-                        icon: <FileMarkdownOutlined />,
+                        icon: <FormOutlined />,
                         onClick: () => handleStepClick(0),
                         style: {
                             cursor: "pointer"
                         }
                     },
                     {
-                        // title: "Fill in",
-                        title: "pick",
+                        title: "Write",
                         // status: "finish",
-                        icon: <FormOutlined />,
+                        icon: <FileMarkdownOutlined />,
                         onClick: () => handleStepClick(1),
                         style: {
                             cursor: "pointer"
