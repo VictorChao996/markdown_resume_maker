@@ -31,6 +31,30 @@ function convertMarkdownToHtml(markdown) {
                 "<strong>$1</strong>"
             )
             return boldText
+        } else if (/^:::\s(.+?)\s:::\s(.+?)\s:::\s(.+?)\s:::$/.test(element)) {
+            // Handle custom div structure
+            const [_, time, role, company] = element.match(
+                /^:::\s(.+?)\s:::\s(.+?)\s:::\s(.+?)\s:::$/
+            )
+            return `
+                <div class="flex-single-experience">
+                    <span>${time}</span>
+                    <span>${role}</span>
+                    <span>${company}</span>
+                </div>
+            `
+        } else if (element.startsWith("::: skills start")) {
+            return `<div class="flex-skills">`
+        } else if (element.startsWith("::: skills end")) {
+            return `</div>`
+        } else if (element.startsWith("::: info start")) {
+            return `<div class="flex-info">`
+        } else if (element.startsWith("::: info end")) {
+            return `</div>`
+        } else if (element.startsWith("::: start")) {
+            return `<div class="flex">`
+        } else if (element.startsWith("::: end")) {
+            return `</div>`
         } else {
             // Treat everything else as a paragraph
             return `<p>${element}</p>`

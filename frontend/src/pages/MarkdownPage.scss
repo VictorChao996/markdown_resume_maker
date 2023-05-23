@@ -19,26 +19,30 @@
 }
 
 .markdownPage{
-    // position: sticky;
-    top: 40px;
+    position: fixed;
+    top: 80px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: white;
-    height: 100vh;
+    // max-height: 100%;
+    max-height: 90vh;
+    width: 100%;
 
     .code-editor-container{
-        flex-grow: 1;
+        // flex-grow: 1;
         overflow-y: scroll;
-        width: 50%;
+        // width: 40%;
+        max-height: 100%;
+        flex: 1 1 45%;
     }
 
     .previewArea{
-        // margin-left: 20px;
-        flex-grow: 1;
+        // flex-grow: 1;
         overflow-y: scroll;
-        width: 50%;
-        height: 200%;
+        flex: 1 1 55%;
+        // width: 60%;
+        // height: 200%;
         background-color: rgb(245, 245, 245);
         display: flex;
         justify-content: center;

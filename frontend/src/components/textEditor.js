@@ -30,6 +30,7 @@ const TextEditor = ({ markdownContent, setMarkdown }) => {
             onChange={handleTyping}
             minHeight="800px"
             style={{ fontSize: "16px" }}
+            lineWrapping={true}
         />
     )
 }

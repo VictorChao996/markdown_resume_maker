@@ -52,6 +52,7 @@ const DownloadPage = ({ resumeHTML }) => {
                 cardRef={cardRef}
             />
             <button onClick={handleDownloadPDF}>Download</button>
+            <button onClick={handleDownloadImage}>Download Image</button>
         </div>
     )
 }

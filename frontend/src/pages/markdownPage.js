@@ -14,7 +14,7 @@ const MarkdownPage = ({ setResumeHTML }) => {
         // const converter = new showdown.Converter()
         // const convertedHtml = converter.makeHtml(markdown)
         const convertedHtml = convertMarkdownToHtml(markdown)
-        console.log(convertedHtml)
+        // console.log(convertedHtml)
         setHtml(convertedHtml)
         setResumeHTML(convertedHtml)
     }, [markdown])
