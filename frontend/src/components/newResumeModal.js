@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Alert, Modal, Button, Form, Input } from "antd"
 import API from "../utils/API"
 import axios from "axios"
@@ -8,18 +8,28 @@ const { Item } = Form
 const NewResumeModal = ({ isModalOpen, setIsModalOpen }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [resumeCreateMessage, setResumeCreateMessage] = useState(
-        "The title could not be empty"
+        "Make a new resume with the title."
     )
     const [resumeCreateStatus, setResumeCreateStatus] = useState(0)
 
     const handleOk = () => {
         if (resumeCreateStatus === 2) {
             setIsModalOpen(false)
+            setResumeCreateStatus(0)
+            setResumeCreateMessage("Make a new resume with the title")
+            resetForm()
         }
     }
     const handleCancel = () => {
         setIsModalOpen(false)
+        resetForm()
     }
+
+    const resetForm = () => {
+        const form = document.getElementById("createResumeForm")
+        form.reset()
+    }
+
     const handleCreateResume = async (values) => {
         const { title, description } = values
         setIsLoading(true)
@@ -122,7 +132,7 @@ const NewResumeModal = ({ isModalOpen, setIsModalOpen }) => {
                         message={resumeCreateMessage}
                         type={
                             resumeCreateStatus === 0
-                                ? "warning"
+                                ? "info"
                                 : resumeCreateStatus === 1
                                 ? "error"
                                 : "success"

@@ -48,7 +48,7 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
     return (
         <Modal
             title="Here is your resume list"
-            centered
+            centered={true}
             open={isModalOpen}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -87,11 +87,13 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
                     <ResumeList
                         resumeTitleList={resumeTitleList}
                         setResumeTitleList={setResumeTitleList}
+                        handleListRefresh={handleListRefresh}
                     />
                     <Alert
                         message={"Pick one to edit"}
-                        type="success"
+                        type="info"
                         showIcon
+                        style={{ marginTop: "20px" }}
                     />
                 </>
             ) : (

@@ -8,7 +8,8 @@ const apiUrls = {
     resumeListAPI: `${url}/api/resume/list`,
     resumeCreateAPI: `${url}/api/resume/create`,
     resumeGetAPI: `${url}/api/resume/get`,
-    resumeUpdateAPI: `${url}/api/resume/update`
+    resumeUpdateAPI: `${url}/api/resume/update`,
+    resumeDeleteAPI: `${url}/api/resume/delete`
 }
 
 export default apiUrls

@@ -35,6 +35,7 @@ const MainLayout = () => {
 
         return () => {
             localStorage.clear()
+            setLoginStatus(0)
         }
     }, [])
 
@@ -46,7 +47,7 @@ const MainLayout = () => {
             }
             setIsNewResumeModalOpen(true)
         }),
-        getItem("resume list", "2", <UnorderedListOutlined />, null, () => {
+        getItem("my resume", "2", <UnorderedListOutlined />, null, () => {
             setIsResumeListModalOpen(true)
         }),
         getItem("save", "3", <SaveOutlined />, null, async () => {

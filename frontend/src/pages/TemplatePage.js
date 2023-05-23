@@ -33,13 +33,12 @@ const TemplatePage = () => {
                         cursor: "pointer"
                     }}
                 >
-                    <img
-                        src={template1_screenshot}
-                        alt="hello"
-                        width={"210px"}
-                        height={"297px"}
-                        // cursor={"pointer"}
-                    />
+                    <div className="imgDiv">
+                        <img
+                            src={template1_screenshot}
+                            alt="template1_screenshot"
+                        />
+                    </div>
                 </Col>
                 {skeletonList}
             </Row>

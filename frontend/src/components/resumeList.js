@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Divider, List, Typography, Button } from "antd"
 import API from "../utils/API.js"
-import axios, { toFormData } from "axios"
+import axios from "axios"
+import { DeleteOutlined } from "@ant-design/icons"
+import "./resumeList.scss"
 
 const data = [
     "Racing car sprays burning fuel into crowd.",
@@ -11,28 +13,13 @@ const data = [
     "Los Angeles battles huge wildfires."
 ]
 
-const ResumeList = ({ resumeTitleList, setResumeTitleList }) => {
+const ResumeList = ({
+    resumeTitleList,
+    setResumeTitleList,
+    handleListRefresh
+}) => {
     // const [resumeTitleList, setResumeTitleList] = useState([])
-
-    useEffect(() => {
-        // getResumeList()
-        // setResumeTitleList(localStorage.getItem("resumeTitleList"))
-        console.log(resumeTitleList)
-    }, [resumeTitleList])
-
-    const getResumeList = async () => {
-        const response = await axios.get(API.resumeListAPI, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-            }
-        })
-        console.log(response)
-        setResumeTitleList(response.data.data.resumeTitleList)
-        localStorage.setItem(
-            "resumeTitleList",
-            response.data.data.resumeTitleList
-        )
-    }
+    const [currentSelectResume, setCurrentSelectResume] = useState(-1)
 
     const getResumeContent = async (resumeId) => {
         console.log(resumeId)
@@ -54,8 +41,40 @@ const ResumeList = ({ resumeTitleList, setResumeTitleList }) => {
                 response.data.data.resume.content
             )
             localStorage.setItem("resumeId", resumeId)
+            setCurrentSelectResume(resumeId)
             localStorage.setItem("resumeTitle", response.data.data.resume.title)
-            // console.log(localStorage.getItem("markdownContent"))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //* delete resume by resumeId in DB and remove it from the localStorage (resumeTitleList)
+    const deleteResume = async (resumeId) => {
+        try {
+            const response = await axios.delete(
+                `${API.resumeDeleteAPI}?resumeId=${resumeId}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "accessToken"
+                        )}`
+                    }
+                }
+            )
+            console.log(response)
+            if (response.status === 200) {
+                setResumeTitleList(
+                    resumeTitleList.filter((item) => item.id !== resumeId)
+                )
+                localStorage.setItem(
+                    "resumeTitleList",
+                    resumeTitleList.filter((item) => item.id !== resumeId)
+                )
+                localStorage.setItem(
+                    "resumeListSize",
+                    localStorage.getItem("resumeListSize") - 1
+                )
+            }
         } catch (e) {
             console.log(e)
         }
@@ -64,14 +83,34 @@ const ResumeList = ({ resumeTitleList, setResumeTitleList }) => {
     return (
         <div>
             <List
+                className="resumeList"
                 bordered
                 dataSource={resumeTitleList}
                 renderItem={(item) => (
-                    <List.Item>
-                        <a onClick={() => getResumeContent(item.id)}>
+                    // <List.Item>
+                    //     <a onClick={() => getResumeContent(item.id)}>
+                    //         {item.title}
+                    //     </a>
+                    // </List.Item>
+                    // <div className="listItem">
+                    <div
+                        className={`listItem ${
+                            item.id === currentSelectResume
+                                ? "listItemSelected"
+                                : ""
+                        }`}
+                    >
+                        <span onClick={() => getResumeContent(item.id)}>
                             {item.title}
-                        </a>
-                    </List.Item>
+                        </span>
+                        <DeleteOutlined
+                            className="deleteIcon"
+                            onClick={() => {
+                                deleteResume(item.id)
+                                // handleListRefresh()
+                            }}
+                        />
+                    </div>
                 )}
             />
         </div>
