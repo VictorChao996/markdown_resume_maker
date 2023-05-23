@@ -167,6 +167,24 @@ const updateResume = async (resume_id, resumeData) => {
     })
 }
 
+//delete resume by resume_id
+const deleteResume = async (resume_id) => {
+    return new Promise((resolve, reject) => {
+        pool.query(
+            `DELETE FROM resumes WHERE id = ?`,
+            [resume_id],
+            (err, results) => {
+                if (err) {
+                    console.log(err)
+                    reject(null)
+                }
+                console.log(results)
+                resolve(results.affectedRows)
+            }
+        )
+    })
+}
+
 module.exports = {
     showTables,
     getUserByEmail,
@@ -176,5 +194,6 @@ module.exports = {
     getResumeById,
     insertUser,
     createResume,
-    updateResume
+    updateResume,
+    deleteResume
 }

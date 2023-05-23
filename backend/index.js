@@ -8,6 +8,7 @@ const userSignInRoute = require("./routes/userSignInAPI")
 const resumeCreateRoute = require("./routes/resumeCreateAPI")
 const resumeUpdateRoute = require("./routes/resumeUpdateAPI")
 const resumeGetRoute = require("./routes/resumeGetAPI")
+const resumeDeleteRoute = require("./routes/resumeDeleteAPI")
 const resumeListRoute = require("./routes/resumeListAPI")
 
 const app = express()
@@ -28,6 +29,7 @@ app.use("/api/user/signin", userSignInRoute)
 app.use("/api/resume/create", resumeCreateRoute)
 app.use("/api/resume/update", resumeUpdateRoute)
 app.use("/api/resume/get", resumeGetRoute)
+app.use("/api/resume/delete", resumeDeleteRoute)
 app.use("/api/resume/list", resumeListRoute)
 
 app.listen(port, () => {

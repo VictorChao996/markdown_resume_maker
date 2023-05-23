@@ -24,6 +24,7 @@ Content-Type: application/json
     "password": "12345"
 }
 
+###! UserId = 3 for the following token
 ###
 # Resume Get API
 
@@ -64,6 +65,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6I
         "updated_at": 1684121586601,
         "visibility": true
     }
+}
+
+###
+# Delete Resume API
+DELETE http://localhost:3003/api/resume/delete?resumeId=8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+
 }
 
 ###

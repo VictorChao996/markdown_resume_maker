@@ -43,6 +43,8 @@ VALUES (3, 'My Resume 3', 'third resume test', 1684121586601, 1684121586601, FAL
 ---@block
 INSERT INTO resumes ( user_id, title, content, created_at,updated_at, visibility)
 VALUES (3, 'My Resume 4', 'forth resume test', 1684121586601, 1684121586601, FALSE);
-
+---@block
+INSERT INTO resumes ( id, user_id, title, content, created_at,updated_at, visibility)
+VALUES (8,3, 'My Resume 4', 'forth resume test', 1684121586601, 1684121586601, FALSE);
 
 
