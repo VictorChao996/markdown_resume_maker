@@ -1,19 +1,35 @@
-.page {
+.adjustPage {
+    // position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
     // margin-top: 80px;
     // height: 100vh;
+    // height: 100%;
+    // max-height: 90vh;
+    overflow-y: hidden;
+    // height: 100vh;
     height: 100%;
-    overflow: hidden;
+    width: 100%;
+    // z-index: 2;
 }
 
-.card {
-    display: flex;
+.card{
+    position: fixed;
+}
+
+// .card{
+//     position: relative;
+//     height: 200px;
+//     overflow-y: hidden;
+//     opacity: 0.3;
+// }
+
+// .card {
+//     display: flex;
     // justify-content: center;
     // align-items: center;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    // background: white;
+    // box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     // overflow: auto;
-}
+// }

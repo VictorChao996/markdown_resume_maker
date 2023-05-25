@@ -1,15 +1,23 @@
 import React, { useEffect, useState, useRef } from "react"
 import "./AdjustPage.scss"
 import ResumePreviewCard from "../components/resumePreviewCard"
+import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 
 const AdjustPage = ({ resumeHTML }) => {
     const cardRef = useRef() // Add a reference to the card
 
     return (
-        <div className="page">
-            <ResumePreviewCard
-                resumeHTML={resumeHTML}
+        <div className="adjustPage">
+            <div className="card">
+                <ResumePreviewCard
+                    resumeHTML={resumeHTML}
+                    cardRef={cardRef}
+                />
+            </div>
+            <ResumePreviewScreenshot
+                html={resumeHTML}
                 cardRef={cardRef}
+                canResize={true}
             />
             {/* <Draggable>
                 <div

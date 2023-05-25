@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from "react"
 import showdown from "showdown"
+import html2canvas from "html2canvas"
 import "./MarkdownPage.scss"
 import TextEditor from "../components/textEditor"
 import ResumePreviewCard from "../components/resumePreviewCard"
 import convertMarkdownToHtml from "../utils/markdownConverter"
+import Draggable from "react-draggable"
+import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 
 const MarkdownPage = ({ setResumeHTML }) => {
     const [markdown, setMarkdown] = useState("")
     const [html, setHtml] = useState("")
+    const [previewImageURL, setPreviewImageURL] = useState("")
     const cardRef = useRef()
 
     useEffect(() => {
@@ -17,7 +21,23 @@ const MarkdownPage = ({ setResumeHTML }) => {
         // console.log(convertedHtml)
         setHtml(convertedHtml)
         setResumeHTML(convertedHtml)
+        handlePreviewImage()
     }, [markdown])
+
+    useEffect(() => {
+        if (html) {
+            handlePreviewImage()
+        }
+    }, [html])
+
+    const handlePreviewImage = () => {
+        if (cardRef.current) {
+            html2canvas(cardRef.current, { scale: 5 }).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png")
+                setPreviewImageURL(imgData) //
+            })
+        }
+    }
 
     return (
         <>
@@ -33,10 +53,42 @@ const MarkdownPage = ({ setResumeHTML }) => {
                     className="previewArea"
                 /> */}
                 <div className="previewArea">
-                    <ResumePreviewCard
-                        resumeHTML={html}
-                        cardRef={cardRef}
-                    />
+                    {/* <Draggable>
+                        <div
+                            style={{
+                                // width: "600px",
+                                // height: "848px",
+                                width: "400px",
+                                height: "565.6px",
+                                position: "absolute",
+                                border: "1px solid black"
+                            }}
+                        >
+                            <img
+                                src={previewImageURL}
+                                alt="Markdown Preview"
+                                style={{
+                                    width: "100%",
+                                    height: "100%"
+                                }}
+                            />
+                        </div>
+                    </Draggable> */}
+                    <Draggable>
+                        <div>
+                            <ResumePreviewScreenshot
+                                html={html}
+                                cardRef={cardRef}
+                                canResize={true}
+                            />
+                        </div>
+                    </Draggable>
+                    <div className="card">
+                        <ResumePreviewCard
+                            resumeHTML={html}
+                            cardRef={cardRef}
+                        />
+                    </div>
                 </div>
             </div>
         </>
