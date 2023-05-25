@@ -21,23 +21,7 @@ const MarkdownPage = ({ setResumeHTML }) => {
         // console.log(convertedHtml)
         setHtml(convertedHtml)
         setResumeHTML(convertedHtml)
-        handlePreviewImage()
     }, [markdown])
-
-    useEffect(() => {
-        if (html) {
-            handlePreviewImage()
-        }
-    }, [html])
-
-    const handlePreviewImage = () => {
-        if (cardRef.current) {
-            html2canvas(cardRef.current, { scale: 5 }).then((canvas) => {
-                const imgData = canvas.toDataURL("image/png")
-                setPreviewImageURL(imgData) //
-            })
-        }
-    }
 
     return (
         <>
