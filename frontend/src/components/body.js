@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Form, Modal, Steps, Layout, Menu, theme, Button, Input } from "antd"
 import {
     FormOutlined,
@@ -15,6 +15,7 @@ import DownloadPage from "../pages/DownloadPage"
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
     const [resumeHTML, setResumeHTML] = useState("")
+    const cardRef = useRef()
 
     const handleStepClick = (stepIndex) => {
         console.log("Step clicked:", stepIndex)
@@ -26,11 +27,21 @@ const Body = () => {
             case 0:
                 return <TemplatePage />
             case 1:
-                return <MarkdownPage setResumeHTML={setResumeHTML} />
+                return (
+                    <MarkdownPage
+                        setResumeHTML={setResumeHTML}
+                        cardRef={cardRef}
+                    />
+                )
             // case 2:
             //     return <AdjustPage resumeHTML={resumeHTML} />
             case 2:
-                return <DownloadPage resumeHTML={resumeHTML} />
+                return (
+                    <DownloadPage
+                        resumeHTML={resumeHTML}
+                        cardRef={cardRef}
+                    />
+                )
             default:
                 return null
         }
@@ -42,6 +53,7 @@ const Body = () => {
                 size="small"
                 type="navigation"
                 current={currentStep}
+                onChange={handleStepClick}
                 style={{
                     position: "sticky",
                     top: 0,
@@ -55,22 +67,15 @@ const Body = () => {
                 items={[
                     {
                         // title: "Fill in",
+                        // onClick: () => handleStepClick(0),
                         title: "pick",
-                        // status: "finish",
-                        icon: <FormOutlined />,
-                        onClick: () => handleStepClick(0),
-                        style: {
-                            cursor: "pointer"
-                        }
+                        icon: <FormOutlined />
                     },
                     {
                         title: "Write",
                         // status: "finish",
-                        icon: <FileMarkdownOutlined />,
-                        onClick: () => handleStepClick(1),
-                        style: {
-                            cursor: "pointer"
-                        }
+                        icon: <FileMarkdownOutlined />
+                        // onClick: () => handleStepClick(1),
                     },
                     // {
                     //     title: "Adjust",
@@ -84,23 +89,11 @@ const Body = () => {
                     {
                         title: "Download",
                         // status: "wait",
-                        icon: <DownloadOutlined />,
-                        onClick: () => handleStepClick(2),
-                        style: {
-                            cursor: "pointer"
-                        }
+                        icon: <DownloadOutlined />
+                        // onClick: () => handleStepClick(2),
                     }
                 ]}
             />
-            {/* <div
-                className="site-layout-content"
-                style={{
-                    background: colorBgContainer,
-                    height: "1000px"
-                }}
-            >
-                Content
-            </div> */}
             {renderComponent()}
         </div>
     )

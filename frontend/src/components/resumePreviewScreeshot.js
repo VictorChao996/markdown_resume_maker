@@ -17,7 +17,6 @@ const ResumePreviewScreenshot = ({ html, cardRef, canResize }) => {
 
     useEffect(() => {
         if (canResize) {
-            console.log("scroll")
             // const cardElement = cardRef.current
             const previewImage = document.getElementById("previewImage")
             previewImage.addEventListener("wheel", handleScroll)

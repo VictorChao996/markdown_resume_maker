@@ -8,11 +8,11 @@ import convertMarkdownToHtml from "../utils/markdownConverter"
 import Draggable from "react-draggable"
 import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 
-const MarkdownPage = ({ setResumeHTML }) => {
+const MarkdownPage = ({ setResumeHTML, cardRef }) => {
     const [markdown, setMarkdown] = useState("")
     const [html, setHtml] = useState("")
     const [previewImageURL, setPreviewImageURL] = useState("")
-    const cardRef = useRef()
+    // const cardRef = useRef()
 
     useEffect(() => {
         // const converter = new showdown.Converter()

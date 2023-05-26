@@ -7,8 +7,8 @@ import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 import { DownloadOutlined } from "@ant-design/icons"
 import { Button } from "antd"
 
-const DownloadPage = ({ resumeHTML }) => {
-    const cardRef = useRef()
+const DownloadPage = ({ resumeHTML, cardRef }) => {
+    // const cardRef = useRef()
 
     //* 將卡片轉成 image 並放進 pdf 中下載
     const handleDownloadPDF = () => {
@@ -35,7 +35,11 @@ const DownloadPage = ({ resumeHTML }) => {
                 x = (pdfWidth - width) / 2
             }
             pdf.addImage(imgData, "PNG", x, y, width, height)
-            pdf.save("card.pdf")
+            let filename = "resume.pdf"
+            if (localStorage.getItem("resumeTitle")) {
+                filename = `${localStorage.getItem("resumeTitle")}.pdf`
+            }
+            pdf.save(filename)
         })
     }
 
