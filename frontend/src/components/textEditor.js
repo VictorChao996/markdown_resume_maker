@@ -6,7 +6,6 @@ import { sublime } from "@uiw/codemirror-theme-sublime"
 
 const TextEditor = ({ markdownContent, setMarkdown }) => {
     useEffect(() => {
-        console.log(localStorage.getItem("markdownContent"))
         if (localStorage.getItem("markdownContent") !== null) {
             setMarkdown(localStorage.getItem("markdownContent"))
             return

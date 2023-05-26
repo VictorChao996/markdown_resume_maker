@@ -18,6 +18,8 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
 
     const handleOk = () => {
         setIsModalOpen(false)
+        const tempContent = localStorage.getItem("tempMarkdownContent")
+        localStorage.setItem("markdownContent", tempContent)
     }
 
     const handleCancel = () => {

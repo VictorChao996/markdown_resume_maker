@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { Divider, List, Typography, Button } from "antd"
+import { List, message } from "antd"
 import API from "../utils/API.js"
 import axios from "axios"
 import { DeleteOutlined } from "@ant-design/icons"
 import "./resumeList.scss"
-
-const data = [
-    "Racing car sprays burning fuel into crowd.",
-    "Japanese princess to wed commoner.",
-    "Australian walks 100km after outback crash.",
-    "Man charged over missing wedding girl.",
-    "Los Angeles battles huge wildfires."
-]
 
 const ResumeList = ({
     resumeTitleList,
@@ -35,9 +27,13 @@ const ResumeList = ({
                 }
             )
             console.log(response.data.data.resume)
-            localStorage.removeItem("markdownContent")
+            // localStorage.removeItem("markdownContent")
+            // localStorage.setItem(
+            //     "markdownContent",
+            //     response.data.data.resume.content
+            // )
             localStorage.setItem(
-                "markdownContent",
+                "tempMarkdownContent",
                 response.data.data.resume.content
             )
             localStorage.setItem("resumeId", resumeId)
@@ -74,9 +70,18 @@ const ResumeList = ({
                     "resumeListSize",
                     localStorage.getItem("resumeListSize") - 1
                 )
+                setCurrentSelectResume(-1)
+                localStorage.setItem("markdownContent", " ")
+                localStorage.setItem("tempMarkdownContent", " ")
+                console.log(
+                    "markdownContent",
+                    localStorage.getItem("markdownContent")
+                )
             }
+            message.success("Successful Delete")
         } catch (e) {
             console.log(e)
+            message.error("Failed to delete resume: something went wrong")
         }
     }
 
@@ -103,7 +108,9 @@ const ResumeList = ({
                         <span onClick={() => getResumeContent(item.id)}>
                             {item.title}
                         </span>
+
                         <DeleteOutlined
+                            title="delete"
                             className="deleteIcon"
                             onClick={() => {
                                 deleteResume(item.id)

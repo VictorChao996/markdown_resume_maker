@@ -15,7 +15,7 @@ const TemplatePage = () => {
             }}
         >
             <Skeleton.Image
-                active
+                // active
                 size={"large"}
                 style={{ height: "297px", width: "210px" }}
             />
