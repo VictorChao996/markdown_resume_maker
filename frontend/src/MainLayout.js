@@ -135,8 +135,10 @@ const MainLayout = () => {
                     position: "fixed",
                     height: "100vh",
                     overflow: "auto",
-                    zIndex: 1
+                    zIndex: 1,
+                    borderRight: "5px solid #adacac"
                 }}
+                width={170}
             >
                 <Menu
                     theme="dark"
@@ -147,7 +149,7 @@ const MainLayout = () => {
             </Sider>
             <Layout
                 className="layout"
-                style={{ marginLeft: collapsed ? "80px" : "200px" }}
+                style={{ marginLeft: collapsed ? "80px" : "170px" }}
             >
                 <Content style={{ height: "100%" }}>
                     <Body />

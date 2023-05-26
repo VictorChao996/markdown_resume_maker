@@ -15,9 +15,6 @@ import DownloadPage from "../pages/DownloadPage"
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
     const [resumeHTML, setResumeHTML] = useState("")
-    const {
-        token: { colorBgContainer }
-    } = theme.useToken()
 
     const handleStepClick = (stepIndex) => {
         console.log("Step clicked:", stepIndex)
@@ -30,9 +27,9 @@ const Body = () => {
                 return <TemplatePage />
             case 1:
                 return <MarkdownPage setResumeHTML={setResumeHTML} />
+            // case 2:
+            //     return <AdjustPage resumeHTML={resumeHTML} />
             case 2:
-                return <AdjustPage resumeHTML={resumeHTML} />
-            case 3:
                 return <DownloadPage resumeHTML={resumeHTML} />
             default:
                 return null
@@ -48,7 +45,7 @@ const Body = () => {
                 style={{
                     position: "sticky",
                     top: 0,
-                    padding: "20px 20px",
+                    // padding: "20px 20px",
                     width: "100%",
                     backgroundColor: "white",
                     borderBottom: "1px solid #e8e8e8",
@@ -75,20 +72,20 @@ const Body = () => {
                             cursor: "pointer"
                         }
                     },
-                    {
-                        title: "Adjust",
-                        // status: "process",
-                        icon: <ControlOutlined />,
-                        onClick: () => handleStepClick(2),
-                        style: {
-                            cursor: "pointer"
-                        }
-                    },
+                    // {
+                    //     title: "Adjust",
+                    //     // status: "process",
+                    //     icon: <ControlOutlined />,
+                    //     onClick: () => handleStepClick(2),
+                    //     style: {
+                    //         cursor: "pointer"
+                    //     }
+                    // },
                     {
                         title: "Download",
                         // status: "wait",
                         icon: <DownloadOutlined />,
-                        onClick: () => handleStepClick(3),
+                        onClick: () => handleStepClick(2),
                         style: {
                             cursor: "pointer"
                         }
