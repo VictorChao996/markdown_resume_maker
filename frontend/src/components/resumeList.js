@@ -104,8 +104,10 @@ const ResumeList = ({
                                 ? "listItemSelected"
                                 : ""
                         }`}
+                        onClick={() => getResumeContent(item.id)}
                     >
-                        <span onClick={() => getResumeContent(item.id)}>
+                        <span>
+                            {/* <span onClick={() => getResumeContent(item.id)}> */}
                             {item.title}
                         </span>
 

@@ -62,7 +62,9 @@ const Body = () => {
                     backgroundColor: "white",
                     borderBottom: "1px solid #e8e8e8",
                     zIndex: 1,
-                    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)"
+                    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                    fontWeight: 600,
+                    letterSpacing: "1.6px"
                 }}
                 items={[
                     {

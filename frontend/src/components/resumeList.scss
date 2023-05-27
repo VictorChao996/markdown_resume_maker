@@ -17,15 +17,24 @@
         border-bottom: none;
     }
     
-    span{
-        &:hover{
-            color: rgb(52, 183, 235);
-        }
-
+    &:hover{
+        background-color: #689689;
+        color: white;
     }
 
+    span{
+        font-weight: 600;
+    }
+    
+    // span{
+    //     &:hover{
+    //         color: rgb(52, 183, 235);
+    //     }
+
+    // }
+
     .deleteIcon{
-        color: black;
+        // color: black;
         &:hover{
             color: red;
         }
@@ -33,7 +42,9 @@
 }
 
 .listItemSelected{
-    span{
-        color:rgb(13, 127, 172);
-    }
+    // span{
+    //     color:rgb(13, 127, 172);
+    // }
+    background-color:#689689;
+    color: white;
 }

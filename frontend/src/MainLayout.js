@@ -136,9 +136,10 @@ const MainLayout = () => {
                     height: "100vh",
                     overflow: "auto",
                     zIndex: 1,
-                    borderRight: "5px solid #adacac"
+                    borderRight: "5px solid #3a4750"
                 }}
                 width={170}
+                // theme="light"
             >
                 <Menu
                     theme="dark"
