@@ -8,7 +8,7 @@ import convertMarkdownToHtml from "../utils/markdownConverter"
 import Draggable from "react-draggable"
 import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 
-const MarkdownPage = ({ setResumeHTML, cardRef }) => {
+const MarkdownPage = ({ setResumeHTML, cardRef, template }) => {
     const [markdown, setMarkdown] = useState("")
     const [html, setHtml] = useState("")
     const [previewImageURL, setPreviewImageURL] = useState("")
@@ -32,32 +32,7 @@ const MarkdownPage = ({ setResumeHTML, cardRef }) => {
                         setMarkdown={setMarkdown}
                     />
                 </div>
-                {/* <div
-                    dangerouslySetInnerHTML={{ __html: html }}
-                    className="previewArea"
-                /> */}
                 <div className="previewArea">
-                    {/* <Draggable>
-                        <div
-                            style={{
-                                // width: "600px",
-                                // height: "848px",
-                                width: "400px",
-                                height: "565.6px",
-                                position: "absolute",
-                                border: "1px solid black"
-                            }}
-                        >
-                            <img
-                                src={previewImageURL}
-                                alt="Markdown Preview"
-                                style={{
-                                    width: "100%",
-                                    height: "100%"
-                                }}
-                            />
-                        </div>
-                    </Draggable> */}
                     <Draggable>
                         <div>
                             <ResumePreviewScreenshot
@@ -71,6 +46,7 @@ const MarkdownPage = ({ setResumeHTML, cardRef }) => {
                         <ResumePreviewCard
                             resumeHTML={html}
                             cardRef={cardRef}
+                            template={template}
                         />
                     </div>
                 </div>

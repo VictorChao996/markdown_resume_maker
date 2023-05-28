@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
-import { Alert, Form, Modal, Button, Input, Typography } from "antd"
+import { Alert, Form, Modal, Button, Input, message } from "antd"
 import { MailOutlined } from "@ant-design/icons"
 import API from "../utils/API"
 import SignUpModal from "./SignUpModal.js"
@@ -53,12 +53,14 @@ const SignInModal = ({
             if (response.status === 200) {
                 setIsLoading(false)
                 setLoginStatus(2)
-                setLoginMessage("Successful Sign In")
+                // setLoginMessage("Successful Sign In")
                 // setAccessToken(response.data.data.access_token)
                 localStorage.setItem(
                     "accessToken",
                     response.data.data.access_token
                 )
+                setIsModalOpen(false)
+                message.success("Successful Sign In")
                 // console.log(response.data.data.access_token)
                 // setIsModalOpen(false);
             }

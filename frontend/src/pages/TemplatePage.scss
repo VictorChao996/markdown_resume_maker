@@ -1,6 +1,14 @@
 .templatePage{
     overflow-y: scroll;
-    height: 100vh;
+    // height: 100vh;
+    height: 90%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 0px;
+
 }
 
 
@@ -11,6 +19,7 @@
     height: 297px;
     box-shadow: "0 2px 4px rgba(0, 0, 0, 0.2)";
     border-radius: "5px";
+    margin-bottom: 40px;
 
     img{
         height: 100%;

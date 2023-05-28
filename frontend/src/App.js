@@ -7,15 +7,19 @@ import MainLayout from "./MainLayout.js"
 
 function App() {
     return (
+        //* 更改 ant design 預設主題色
         <ConfigProvider
             theme={{
                 token: {
-                    // colorPrimary: "#34b7eb",
                     colorPrimary: "#689689",
                     colorBgLayout: "#eeeeee",
-                    // colorBgContainer: "#303841",
-                    // colorText: "#ffffff",
-                    colorBgTextHover: "#689689"
+                    colorBgTextHover: "#689689",
+                    colorLink: "#689689",
+                    colorLinkHover: "#5b7a73",
+                    colorSuccess: "#689689",
+                    colorInfo: "#689689",
+                    colorError: "#c41e3d",
+                    colorWarning: "#FCA311"
                 }
             }}
         >

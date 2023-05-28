@@ -1,8 +1,10 @@
 import { useState, useRef } from "react"
-import { Form, Modal, Steps, Layout, Menu, theme, Button, Input } from "antd"
+import {
+    Steps,
+    Tooltip
+} from "antd"
 import {
     FormOutlined,
-    ControlOutlined,
     DownloadOutlined,
     FileMarkdownOutlined
 } from "@ant-design/icons"
@@ -15,6 +17,7 @@ import DownloadPage from "../pages/DownloadPage"
 const Body = () => {
     const [currentStep, setCurrentStep] = useState(0)
     const [resumeHTML, setResumeHTML] = useState("")
+    const [template, setTemplate] = useState(1)
     const cardRef = useRef()
 
     const handleStepClick = (stepIndex) => {
@@ -25,12 +28,13 @@ const Body = () => {
     const renderComponent = () => {
         switch (currentStep) {
             case 0:
-                return <TemplatePage />
+                return <TemplatePage setTemplate={setTemplate} />
             case 1:
                 return (
                     <MarkdownPage
                         setResumeHTML={setResumeHTML}
                         cardRef={cardRef}
+                        template={template}
                     />
                 )
             // case 2:
@@ -71,12 +75,20 @@ const Body = () => {
                         // title: "Fill in",
                         // onClick: () => handleStepClick(0),
                         title: "pick",
-                        icon: <FormOutlined />
+                        icon: (
+                            <Tooltip title="Pick a template">
+                                <FormOutlined />
+                            </Tooltip>
+                        )
                     },
                     {
                         title: "Write",
                         // status: "finish",
-                        icon: <FileMarkdownOutlined />
+                        icon: (
+                            <Tooltip title="Write your resume">
+                                <FileMarkdownOutlined />
+                            </Tooltip>
+                        )
                         // onClick: () => handleStepClick(1),
                     },
                     // {
@@ -91,7 +103,11 @@ const Body = () => {
                     {
                         title: "Download",
                         // status: "wait",
-                        icon: <DownloadOutlined />
+                        icon: (
+                            <Tooltip title="Export your resume">
+                                <DownloadOutlined />
+                            </Tooltip>
+                        )
                         // onClick: () => handleStepClick(2),
                     }
                 ]}
