@@ -25,7 +25,12 @@ const Body = () => {
     const renderComponent = () => {
         switch (currentStep) {
             case 0:
-                return <TemplatePage setTemplate={setTemplate} />
+                return (
+                    <TemplatePage
+                        setTemplate={setTemplate}
+                        setCurrentStep={setCurrentStep}
+                    />
+                )
             case 1:
                 return (
                     <MarkdownPage
