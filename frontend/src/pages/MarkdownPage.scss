@@ -63,8 +63,7 @@
 
         .card{
             position: fixed;
-            width: 20px;
+            z-index: -1;
         }
-
     }
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react"
 import Draggable from "react-draggable"
-import "./resumePreviewCard.scss"
+// import "./resumePreviewCard.scss"
 import "./template/template1.scss"
 import "./template/template2.scss"
 import "./template/template3.scss"

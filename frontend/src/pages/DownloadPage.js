@@ -7,7 +7,7 @@ import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 import { DownloadOutlined } from "@ant-design/icons"
 import { Button } from "antd"
 
-const DownloadPage = ({ resumeHTML, cardRef }) => {
+const DownloadPage = ({ resumeHTML, cardRef, template }) => {
     // const cardRef = useRef()
 
     //* 將卡片轉成 image 並放進 pdf 中下載
@@ -86,6 +86,7 @@ const DownloadPage = ({ resumeHTML, cardRef }) => {
                 <ResumePreviewCard
                     resumeHTML={resumeHTML}
                     cardRef={cardRef}
+                    template={template}
                 />
             </div>
 

@@ -1,8 +1,5 @@
 import { useState, useRef } from "react"
-import {
-    Steps,
-    Tooltip
-} from "antd"
+import { Steps, Tooltip } from "antd"
 import {
     FormOutlined,
     DownloadOutlined,
@@ -44,6 +41,7 @@ const Body = () => {
                     <DownloadPage
                         resumeHTML={resumeHTML}
                         cardRef={cardRef}
+                        template={template}
                     />
                 )
             default:
