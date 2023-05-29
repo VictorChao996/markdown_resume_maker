@@ -14,6 +14,7 @@ import NewResumeModal from "./components/newResumeModal.js"
 import ResumeListModal from "./components/resumeListModal.js"
 import ResumeList from "./components/resumeList.js"
 import API from "./utils/API.js"
+import logo from "./images/logo2.png"
 const { Header, Content, Footer, Sider } = Layout
 
 function getItem(label, key, icon, children, onClick) {
@@ -141,6 +142,24 @@ const MainLayout = () => {
                 width={170}
                 // theme="light"
             >
+                <div
+                    style={{
+                        padding: "16px 24px 16px"
+                        // borderBottom: "1px solid #3a4750",
+                        // marginBottom: "16px"
+                    }}
+                >
+                    <img
+                        src={logo}
+                        alt="logo"
+                        style={{
+                            width: "100%",
+                            height: "auto",
+                            borderRadius: "10px",
+                            cursor: "pointer"
+                        }}
+                    />
+                </div>
                 <Menu
                     theme="dark"
                     selectable={false}
