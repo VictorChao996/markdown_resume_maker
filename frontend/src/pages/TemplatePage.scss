@@ -15,11 +15,14 @@
 
 .imgDiv{
     // border: 1px solid black;
-    width: 210px;
-    height: 297px;
+    // width: 210px;
+    // height: 297px;
+    width: 25%;
+    // height: calc(33% * 1.414);
     box-shadow: "0 2px 4px rgba(0, 0, 0, 0.2)";
     border-radius: "5px";
     margin-bottom: 40px;
+    margin-right: 20px;
 
     img{
         height: 100%;
@@ -28,5 +31,21 @@
 
     &:hover{
         border: 1.5px solid green;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .templatePage{
+        height: 100%;
+        padding: 0px;
+    }
+
+    .imgDiv{
+        width: 100%;
+        // height: calc(33% * 1.414);
+        margin-bottom: 0px;
+        margin-right: 0px;
+        margin: 20px;
     }
 }

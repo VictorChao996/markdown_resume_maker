@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 import { Alert, Form, Modal, Button, Input } from "antd"
 import { MailOutlined, UserOutlined } from "@ant-design/icons"
@@ -15,6 +15,12 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
         "Login to see your resume list"
     )
     const [resumeTitleList, setResumeTitleList] = useState([])
+
+    useEffect(() => {
+        if (isModalOpen) {
+            handleListRefresh()
+        }
+    }, [isModalOpen])
 
     const handleOk = () => {
         setIsModalOpen(false)
@@ -61,12 +67,12 @@ const ResumeListModal = ({ isModalOpen, setIsModalOpen }) => {
                 >
                     Close
                 </Button>,
-                <Button
-                    key="refresh List"
-                    onClick={handleListRefresh}
-                >
-                    Refresh
-                </Button>,
+                // <Button
+                //     key="refresh List"
+                //     onClick={handleListRefresh}
+                // >
+                //     Refresh
+                // </Button>,
                 <Button
                     key="Confirm"
                     type="primary"
