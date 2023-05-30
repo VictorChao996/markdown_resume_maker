@@ -7,7 +7,7 @@ const whitePaperImageURL =
 
 const ResumePreviewScreenshot = ({ html, cardRef, canResize }) => {
     const [previewImageURL, setPreviewImageURL] = useState(whitePaperImageURL)
-    const [size, setSize] = useState(350)
+    const [size, setSize] = useState(400)
 
     useEffect(() => {
         if (html) {

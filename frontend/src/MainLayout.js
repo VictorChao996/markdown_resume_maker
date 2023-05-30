@@ -227,6 +227,9 @@ const MainLayout = () => {
                         // marginBottom: "16px"
                     }}
                     ref={tourRefs[0]}
+                    onClick={() => {
+                        window.location.href = "/"
+                    }}
                 >
                     <img
                         src={logo}

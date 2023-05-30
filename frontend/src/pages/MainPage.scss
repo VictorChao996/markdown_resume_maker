@@ -1,0 +1,127 @@
+
+nav{
+    position: fixed;
+height: 60px;
+width: 100%;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+// background-color: #689689;
+background: linear-gradient(90deg, rgba(104,150,137,1) 5%, rgba(104,150,137,1) 33%, rgba(69,101,92,1) 100%);
+display: flex;
+justify-content: space-between;
+padding: 10px 20px;
+z-index: 2;
+box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+
+    .logo_with_name{
+        // height: 50%;
+        // width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px 10px;
+        border-radius: 10px;
+
+        img{
+            height: 70%;
+            // height: auto;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        h2{
+            font-weight: 600;
+            color: white;
+        }
+        
+        &:hover{
+            // filter: brightness(0.9);
+            background-color: rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+    }
+// ul{
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     height: 100%;
+    // }
+    .make_resume_button{
+        color: white;
+        background-color: none;
+        background: none;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin: 5px 0px;
+        margin-right: 50px;
+        padding: 5px 20px;
+        font-size: large;
+
+        a{
+            text-decoration: none;
+            color: white;
+
+            
+        }
+
+        &:hover{
+            color: #689689;
+            background-color: white;
+            cursor: pointer;
+            font-weight: 700;
+
+            a{
+                color: #689689;
+            }
+        }
+
+    }
+
+}
+
+
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // height: 100vh;
+    padding: 100px 0px;
+
+    .step{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 250px;
+        width: 100%;
+        max-width: 800px;
+        margin: 25px 0px;
+        
+        .description{
+            width: 50%;
+            // margin-right: 20px;
+            .small{
+                color: gray;
+                font-size: 0.8em;
+                font-weight: 500;
+            }
+            
+            h2{
+                font-weight: 500;
+                letter-spacing: 1px;
+                margin-bottom: 5px;
+            }
+            p{
+                font-size: 0.9em;
+                // font-weight: 500;
+                opacity: 0.9;
+            }
+        }
+        
+        img{
+            height: 100%;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+        
+        
+    }
+}

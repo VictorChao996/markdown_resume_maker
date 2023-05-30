@@ -1,9 +1,11 @@
 import logo from "./logo.svg"
 import react from "react"
+import { Routes, Route, Link } from "react-router-dom"
 import "./App.css"
 import { ConfigProvider } from "antd"
 
 import MainLayout from "./MainLayout.js"
+import MainPage from "./pages/MainPage.js"
 
 function App() {
     return (
@@ -23,7 +25,16 @@ function App() {
                 }
             }}
         >
-            <MainLayout />
+            <Routes>
+                <Route
+                    path="/"
+                    element={<MainPage />}
+                />
+                <Route
+                    path="editor"
+                    element={<MainLayout />}
+                />
+            </Routes>
         </ConfigProvider>
     )
 }

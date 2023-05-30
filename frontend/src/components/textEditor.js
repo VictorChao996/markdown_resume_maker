@@ -28,6 +28,8 @@ const TextEditor = ({ markdownContent, setMarkdown }) => {
             theme={sublime}
             onChange={handleTyping}
             minHeight="800px"
+            // minWidth="2000px"
+            width="1600px"
             style={{ fontSize: "16px" }}
         />
     )
