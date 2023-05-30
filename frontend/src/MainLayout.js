@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import axios from "axios"
-import { Form, Layout, Menu, Steps, FloatButton } from "antd"
+import { Form, Layout, Menu, Steps, FloatButton, Tour } from "antd"
 import Body from "./components/body.js"
 import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
@@ -8,7 +8,8 @@ import {
     UserOutlined,
     FormOutlined,
     SaveOutlined,
-    UnorderedListOutlined
+    UnorderedListOutlined,
+    QuestionCircleOutlined
 } from "@ant-design/icons"
 import NewResumeModal from "./components/newResumeModal.js"
 import ResumeListModal from "./components/resumeListModal.js"
@@ -17,8 +18,8 @@ import API from "./utils/API.js"
 import logo from "./images/logo2.png"
 const { Header, Content, Footer, Sider } = Layout
 
-function getItem(label, key, icon, children, onClick) {
-    return { key, icon, children, label, onClick }
+function getItem(label, key, icon, children, onClick, ref) {
+    return { key, icon, children, label, onClick, ref }
 }
 
 const MainLayout = () => {
@@ -28,6 +29,80 @@ const MainLayout = () => {
     const [isResumeListModalOpen, setIsResumeListModalOpen] = useState(false)
     const [loginStatus, setLoginStatus] = useState(0)
     const [collapsed, setCollapsed] = useState(false)
+    const [tourOpen, setTourOpen] = useState(false)
+    const tourRefs = [
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null)
+    ]
+
+    const tourSteps = [
+        {
+            title: "Welcome to Markup and Down!",
+            description: "This is a tour to show you how to use this website",
+            placement: "leftTop",
+            cover: (
+                <img
+                    src={logo}
+                    alt="logo"
+                    style={{
+                        width: "100%",
+                        height: "auto",
+                        borderRadius: "10px"
+                        // cursor: "pointer"
+                    }}
+                />
+            ),
+            target: () => tourRefs[0].current
+        },
+        {
+            title: "Step 1: pick a template",
+            description: "Choose a template you like",
+            placement: "left",
+            target: () => tourRefs[1].current
+        },
+        {
+            title: "Write steps",
+            description:
+                "Now, move to the next steps by clicking the write button.",
+            target: () => tourRefs[2].current
+        },
+        {
+            title: "Step2: Write your resume",
+            description:
+                "Write your resume in markdown, try to type the text here. \n Ex: Hello markdown!",
+            placement: "left",
+            target: () => tourRefs[3].current
+        },
+        {
+            title: "Step2.1: preview the result here",
+            description: "Scrolling to see the whole resume (zoom in/out)",
+            placement: "right",
+            target: () => tourRefs[4].current
+        },
+        {
+            title: "Download steps",
+            description:
+                "Now, move to the next steps by clicking the download button.",
+            target: () => tourRefs[2].current
+        },
+        {
+            title: "Step 3: Download your resume",
+            description: "Download your resume as PDF or Markdown!",
+            target: () => tourRefs[5].current
+        },
+        {
+            title: "Save your resume",
+            description:
+                "If you want to store the resume content, you could login.",
+            placement: "left",
+            target: () => tourRefs[6].current
+        }
+    ]
 
     useEffect(() => {
         if (localStorage.getItem("accessToken") !== null) {
@@ -48,22 +123,25 @@ const MainLayout = () => {
             }
             setIsNewResumeModalOpen(true)
         }),
-        getItem("my resume", "2", <UnorderedListOutlined />, null, () => {
+        getItem("My resume", "2", <UnorderedListOutlined />, null, () => {
             setIsResumeListModalOpen(true)
         }),
-        getItem("save", "3", <SaveOutlined />, null, async () => {
+        getItem("Save", "3", <SaveOutlined />, null, async () => {
             console.log("save")
             await saveResumeContentToDB()
         }),
         getItem(
-            loginStatus === 2 ? "logout" : "login",
+            loginStatus === 2 ? "Logout" : "Login",
             "4",
             <UserOutlined />,
             null,
             () => {
                 login_logout_button()
             }
-        )
+        ),
+        getItem("Tour", "5", <QuestionCircleOutlined />, null, () => {
+            setTourOpen(true)
+        })
     ]
 
     const login_logout_button = () => {
@@ -148,6 +226,7 @@ const MainLayout = () => {
                         // borderBottom: "1px solid #3a4750",
                         // marginBottom: "16px"
                     }}
+                    ref={tourRefs[0]}
                 >
                     <img
                         src={logo}
@@ -160,19 +239,24 @@ const MainLayout = () => {
                         }}
                     />
                 </div>
-                <Menu
-                    theme="dark"
-                    selectable={false}
-                    mode="inline"
-                    items={items}
-                />
+                <div
+                    className="menu"
+                    ref={tourRefs[6]}
+                >
+                    <Menu
+                        theme="dark"
+                        selectable={false}
+                        mode="inline"
+                        items={items}
+                    ></Menu>
+                </div>
             </Sider>
             <Layout
                 className="layout"
                 style={{ marginLeft: collapsed ? "80px" : "170px" }}
             >
                 <Content style={{ height: "100%" }}>
-                    <Body />
+                    <Body tourRefs={tourRefs} />
                 </Content>
 
                 <SignInModal
@@ -201,6 +285,11 @@ const MainLayout = () => {
                     onClick={scrollToTop}
                 /> */}
             </Layout>
+            <Tour
+                open={tourOpen}
+                onClose={() => setTourOpen(false)}
+                steps={tourSteps}
+            />
         </Layout>
     )
 }

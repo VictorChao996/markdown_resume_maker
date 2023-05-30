@@ -8,7 +8,7 @@ import convertMarkdownToHtml from "../utils/markdownConverter"
 import Draggable from "react-draggable"
 import ResumePreviewScreenshot from "../components/resumePreviewScreeshot"
 
-const MarkdownPage = ({ setResumeHTML, cardRef, template }) => {
+const MarkdownPage = ({ setResumeHTML, cardRef, template, tourRefs }) => {
     const [markdown, setMarkdown] = useState("")
     const [html, setHtml] = useState("")
     const [previewImageURL, setPreviewImageURL] = useState("")
@@ -26,7 +26,10 @@ const MarkdownPage = ({ setResumeHTML, cardRef, template }) => {
     return (
         <>
             <div className="markdownPage">
-                <div className="code-editor-container">
+                <div
+                    className="code-editor-container"
+                    ref={tourRefs[3]}
+                >
                     <TextEditor
                         markdownContent={markdown}
                         setMarkdown={setMarkdown}
@@ -34,7 +37,7 @@ const MarkdownPage = ({ setResumeHTML, cardRef, template }) => {
                 </div>
                 <div className="previewArea">
                     <Draggable>
-                        <div>
+                        <div ref={tourRefs[4]}>
                             <ResumePreviewScreenshot
                                 html={html}
                                 cardRef={cardRef}

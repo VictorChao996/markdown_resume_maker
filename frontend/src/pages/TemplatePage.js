@@ -5,7 +5,7 @@ import template1_screenshot from "../images/template1_screenshot.png"
 import template2_screenshot from "../images/template2_screenshot.png"
 import template3_screenshot from "../images/template3_screenshot.png"
 
-const TemplatePage = ({ setTemplate, setCurrentStep }) => {
+const TemplatePage = ({ setTemplate, setCurrentStep, tourRefs }) => {
     const skeletonList = Array.from({ length: 10 }).map((_, index) => (
         <Col
             key={index}
@@ -31,6 +31,7 @@ const TemplatePage = ({ setTemplate, setCurrentStep }) => {
                     setTemplate(1)
                     setCurrentStep(1)
                 }}
+                ref={tourRefs[1]}
             >
                 <img
                     src={template1_screenshot}
