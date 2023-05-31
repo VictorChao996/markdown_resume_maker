@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
-import { Form, Layout, Menu, Steps, FloatButton, Tour } from "antd"
+import { Form, Layout, Menu, Steps, FloatButton, Tour, Tooltip } from "antd"
 import Body from "./components/body.js"
 import SignInModal from "./components/SignInModal.js"
 import SignUpModal from "./components/SignUpModal.js"
@@ -9,17 +9,19 @@ import {
     FormOutlined,
     SaveOutlined,
     UnorderedListOutlined,
-    QuestionCircleOutlined
+    QuestionCircleOutlined,
+    FileMarkdownOutlined
 } from "@ant-design/icons"
 import NewResumeModal from "./components/newResumeModal.js"
 import ResumeListModal from "./components/resumeListModal.js"
 import ResumeList from "./components/resumeList.js"
 import API from "./utils/API.js"
 import logo from "./images/logo2.png"
+import MarkdownExplainModal from "./components/markdownExplainModal.js"
 const { Header, Content, Footer, Sider } = Layout
 
-function getItem(label, key, icon, children, onClick, ref) {
-    return { key, icon, children, label, onClick, ref }
+function getItem(label, key, icon, children, onClick) {
+    return { key, icon, children, label, onClick }
 }
 
 const MainLayout = () => {
@@ -27,6 +29,7 @@ const MainLayout = () => {
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false)
     const [isNewResumeModalOpen, setIsNewResumeModalOpen] = useState(false)
     const [isResumeListModalOpen, setIsResumeListModalOpen] = useState(false)
+    const [isMarkdownModalOpen, setIsMarkdownModalOpen] = useState(false)
     const [loginStatus, setLoginStatus] = useState(0)
     const [collapsed, setCollapsed] = useState(false)
     const [tourOpen, setTourOpen] = useState(false)
@@ -122,6 +125,9 @@ const MainLayout = () => {
         }
     }, [])
 
+    /**
+     * * Side Menu Item
+     */
     const items = [
         getItem("New resume", "1", <FormOutlined />, null, () => {
             if (loginStatus !== 2) {
@@ -148,6 +154,9 @@ const MainLayout = () => {
         ),
         getItem("Tour", "5", <QuestionCircleOutlined />, null, () => {
             setTourOpen(true)
+        }),
+        getItem("Markdown", "6", <FileMarkdownOutlined />, null, () => {
+            setIsMarkdownModalOpen(true)
         })
     ]
 
@@ -288,6 +297,10 @@ const MainLayout = () => {
                 <ResumeListModal
                     isModalOpen={isResumeListModalOpen}
                     setIsModalOpen={setIsResumeListModalOpen}
+                />
+                <MarkdownExplainModal
+                    isModalOpen={isMarkdownModalOpen}
+                    setIsModalOpen={setIsMarkdownModalOpen}
                 />
                 {/* <FloatButton
                     icon={<UpOutlined />}
