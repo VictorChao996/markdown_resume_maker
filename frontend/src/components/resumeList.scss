@@ -1,0 +1,50 @@
+.resumeList{
+    height: 50%;
+    // min-height: 200px;
+}
+
+.listItem{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+
+    &:last-child{
+        border-bottom: none;
+    }
+    
+    &:hover{
+        background-color: #689689;
+        color: white;
+    }
+
+    span{
+        font-weight: 600;
+    }
+    
+    // span{
+    //     &:hover{
+    //         color: rgb(52, 183, 235);
+    //     }
+
+    // }
+
+    .deleteIcon{
+        // color: black;
+        &:hover{
+            color: red;
+        }
+    }
+}
+
+.listItemSelected{
+    // span{
+    //     color:rgb(13, 127, 172);
+    // }
+    background-color:#689689;
+    color: white;
+}

@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg"
+import react from "react"
+import { Routes, Route, Link } from "react-router-dom"
+import "./App.css"
+import { ConfigProvider } from "antd"
+
+import MainLayout from "./MainLayout.js"
+import MainPage from "./pages/MainPage.js"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    return (
+        //* 更改 ant design 預設主題色
+        <ConfigProvider
+            theme={{
+                token: {
+                    colorPrimary: "#689689",
+                    colorBgLayout: "#eeeeee",
+                    colorBgTextHover: "#689689",
+                    colorLink: "#689689",
+                    colorLinkHover: "#5b7a73",
+                    colorSuccess: "#689689",
+                    colorInfo: "#689689",
+                    colorError: "#c41e3d",
+                    colorWarning: "#FCA311"
+                }
+            }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Routes>
+                <Route
+                    path="/"
+                    element={<MainPage />}
+                />
+                <Route
+                    path="editor"
+                    element={<MainLayout />}
+                />
+            </Routes>
+        </ConfigProvider>
+    )
 }
 
-export default App;
+export default App

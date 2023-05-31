@@ -1,0 +1,88 @@
+# ! This is a file for http test (vscode extension: Rest Client)
+
+# healthCheck
+GET http://localhost:3003/api/healthCheck
+
+###
+# User Sign Up API
+POST http://localhost:3003/api/user/signup
+Content-Type: application/json
+
+{
+    "name": "vic",
+    "email": "12345@gmail.com",
+    "password": "12345"
+}
+
+###
+# User Sign In API
+POST http://localhost:3003/api/user/signin
+Content-Type: application/json
+
+{
+    "email": "12345@gmail.com",
+    "password": "12345"
+}
+
+###! UserId = 3 for the following token
+###
+# Resume Get API
+
+GET http://localhost:3003/api/resume/get?resumeId=5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+
+}
+
+###
+# Resume Create API
+POST http://localhost:3003/api/resume/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+    "resumeData":{
+        "title": "test from rest client",
+        "content": "content test from rest client",
+        "created_at": 1684121586601,
+        "updated_at": 1684121586601,
+        "visibility": true
+    }
+}
+
+###
+# Update Resume API
+PUT http://localhost:3003/api/resume/update?resumeId=8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+    "resumeData":{
+        "title": "update resume test from rest client",
+        "content": "content update test from rest client",
+        "updated_at": 1684121586601,
+        "visibility": true
+    }
+}
+
+###
+# Delete Resume API
+DELETE http://localhost:3003/api/resume/delete?resumeId=8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+
+}
+
+###
+# Resume List API (GET single user list of resume title )
+GET http://localhost:3003/api/resume/list
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6InZpYyIsImVtYWlsIjoiMTIzNDVAZ21haWwuY29tIiwiaWF0IjoxNjg0MTE2NzI3fQ.HthT86wE0Eekbuxzdno0yZD0zUbLmHqlD1m4i42PJ4s
+
+{
+    
+}

@@ -1,0 +1,38 @@
+.downloadPage{
+    height: 100vh;
+    // height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+
+    // padding: 50px;
+    // padding-top: 50px;
+    padding-bottom: 150px;
+
+    .card{
+        position: fixed;
+        top: 0;
+        height: 300px;
+        z-index: -1;
+    }
+
+    .downloadArea{
+        margin: 45px;
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        &:nth-child(0){
+            margin-right: 15px;
+        }
+    }
+
+}
+
+.darker{
+    // background-color: rgba(0, 0, 0, 0.7);
+    filter: brightness(0.5);
+}
