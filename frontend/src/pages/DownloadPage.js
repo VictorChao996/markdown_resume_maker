@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import ResumePreviewCard from "../components/resumePreviewCard"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
@@ -70,15 +70,15 @@ const DownloadPage = ({ resumeHTML, cardRef, template, tourRefs }) => {
         }
     }
 
-    const handleDownloadImage = () => {
-        html2canvas(cardRef.current).then((canvas) => {
-            const imgData = canvas.toDataURL("image/png")
-            const link = document.createElement("a")
-            link.href = imgData
-            link.download = "screenshot.png"
-            link.click()
-        })
-    }
+    // const handleDownloadImage = () => {
+    //     html2canvas(cardRef.current).then((canvas) => {
+    //         const imgData = canvas.toDataURL("image/png")
+    //         const link = document.createElement("a")
+    //         link.href = imgData
+    //         link.download = "screenshot.png"
+    //         link.click()
+    //     })
+    // }
 
     return (
         <div className="downloadPage">
@@ -113,7 +113,6 @@ const DownloadPage = ({ resumeHTML, cardRef, template, tourRefs }) => {
                     Download Markdown
                 </Button>
             </div>
-
             <ResumePreviewScreenshot
                 html={resumeHTML}
                 cardRef={cardRef}

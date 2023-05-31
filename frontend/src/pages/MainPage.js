@@ -24,6 +24,7 @@ const MainPage = () => {
                     />
                     <h2>Markup And Down</h2>
                 </div>
+                <div className="middle"></div>
                 <button
                     className="how_it_works_button"
                     onClick={() => {

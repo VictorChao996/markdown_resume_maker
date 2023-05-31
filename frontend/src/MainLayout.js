@@ -37,6 +37,7 @@ const MainLayout = () => {
         useRef(null),
         useRef(null),
         useRef(null),
+        useRef(null),
         useRef(null)
     ]
 
@@ -50,7 +51,7 @@ const MainLayout = () => {
                     src={logo}
                     alt="logo"
                     style={{
-                        width: "100%",
+                        width: "70%",
                         height: "auto",
                         borderRadius: "10px"
                         // cursor: "pointer"
@@ -74,7 +75,7 @@ const MainLayout = () => {
         {
             title: "Step2: Write your resume",
             description:
-                "Write your resume in markdown, try to type the text here. \n Ex: Hello markdown!",
+                "Write your resume in markdown, try to type the text here.",
             placement: "left",
             target: () => tourRefs[3].current
         },
@@ -83,6 +84,12 @@ const MainLayout = () => {
             description: "Scrolling to see the whole resume (zoom in/out)",
             placement: "right",
             target: () => tourRefs[4].current
+        },
+        {
+            title: "Step2.2: Example Content",
+            description:
+                "you could also press this button to see the example content",
+            target: () => tourRefs[7].current
         },
         {
             title: "Download steps",
