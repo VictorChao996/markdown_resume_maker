@@ -30,6 +30,7 @@ const MarkdownPage = ({ setResumeHTML, cardRef, template, tourRefs }) => {
      */
     const showExampleContent = () => {
         setMarkdown(markdownContentExample)
+        localStorage.setItem("markdownContent", markdownContentExample)
     }
 
     return (
